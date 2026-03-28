@@ -25,7 +25,9 @@ export const routes: Routes = [
   },
   {
     path: 'clientes',
-    // canActivate: [authGuard],
+
+   // TODO: descomentar cuando el backend esté listo
+  // canActivate: [authGuard],
     children: [
       {
         path: 'misReservas',

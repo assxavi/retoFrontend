@@ -31,4 +31,8 @@ export class AuthService {
   isLoggedIn(): boolean {
     return this.getToken() !== null;
   }
+
+  registro(datos: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/registro`, datos);
+  }
 }

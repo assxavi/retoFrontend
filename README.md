@@ -1,59 +1,75 @@
-# ReservaEntradas
+# Reserva Entradas - Bailes de Salón
+Frontend de la aplicación de reserva de entradas para eventos de bailes de salón.
+Desarrollado con Angular 20 como parte del Reto Transversal de 2º DAW (UNIR).
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.6.
+## Tecnologías
+- Angular 20
+- TypeScript
+- SCSS
+- Google Fonts (Playfair Display + Inter)
 
-## Development server
+## Requisitos previos
+- Node.js v22+
+- npm v10+
+- Angular CLI v20+
 
-To start a local development server, run:
-
+## Instalación y arranque
 ```bash
+git clone https://github.com/assxavi/retoFrontend.git
+cd retoFrontend
+npm install
 ng serve
 ```
+Abrir en el navegador: `http://localhost:4200`
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+## Estructura del proyecto
+```
+src/app/
+  ├── core/
+  │     ├── guards/         # authGuard y adminGuard
+  │     ├── interceptors/   # authInterceptor (JWT)
+  │     └── services/       # AuthService, EventoService, ReservaService
+  ├── models/               # interfaces TypeScript
+  ├── pages/
+  │     ├── public/         # login, registro, eventos
+  │     ├── cliente/        # detalle-evento, mis-reservas
+  │     └── admin/          # gestion-eventos, form-evento
+  └── shared/
+        └── components/     # navbar
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Pantallas implementadas
+- `/login` → formulario de inicio de sesión
+- `/registro` → formulario de registro de nuevo usuario
+- `/eventos` → listado de eventos destacados (público)
+- `/clientes/detalle/:id` → detalle del evento + formulario de reserva
+- `/clientes/misReservas` → listado de reservas del cliente (pendiente)
+- `/admin/eventos` → gestión de eventos (pendiente)
+- `/admin/eventos/nuevo` → crear evento (pendiente)
+- `/admin/eventos/editar/:id` → editar evento (pendiente)
 
-```bash
-ng generate --help
-```
+## Roles de usuario
+| Rol | Acceso |
+|-----|--------|
+| Invitado | Eventos públicos y detalle |
+| ROLE_CLIENTE | Todo lo anterior + reservas |
+| ROLE_ADMON | Todo + gestión de eventos |
 
-## Building
+## Seguridad
+- JWT guardado en localStorage
+- `authInterceptor` añade el token en cada petición HTTP
+- `authGuard` protege rutas de clientes
+- `adminGuard` protege rutas de administración
 
-To build the project run:
+##  Pendiente conectar con backend
+- Descomentar `canActivate: [authGuard]` en `app.routes.ts`
+- Eliminar mock data de `eventos.component.ts`
+- Eliminar mock data de `detalle-evento.component.ts`
+- URL del backend configurada en cada servicio: `http://localhost:8080`
 
-```bash
-ng build
-```
+## Ramas
+- `main` → código estable
+- `develop` → desarrollo activo
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Autor
+Yeray — Frontend Developer

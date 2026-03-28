@@ -1,1 +1,45 @@
-<p>eventos works!</p>
+<div class="eventos-container">
+
+  <div class="eventos-header">
+    <h1>Bailes de Salón</h1>
+    <p>Descubre nuestros próximos eventos</p>
+  </div>
+
+  <div class="loading" *ngIf="cargando">
+    Cargando eventos...
+  </div>
+
+  <div class="error" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <div class="eventos-grid" *ngIf="!cargando && !error">
+
+    <div class="evento-card" *ngFor="let evento of eventos">
+      <div class="evento-badge" *ngIf="evento.destacado === 'S'">
+        Destacado
+      </div>
+      <div class="evento-info">
+        <h3>{{ evento.nombre }}</h3>
+        <p class="descripcion">{{ evento.descripcion }}</p>
+        <div class="evento-datos">
+          <span>{{ evento.fechaInicio | date:'dd/MM/yyyy' }}</span>
+          <span>{{ evento.direccion }}</span>
+          <span>Aforo: {{ evento.aforoMaximo }}</span>
+        </div>
+        <div class="evento-footer">
+          <span class="precio">{{ evento.precioVenta }}€ / persona</span>
+          <a [routerLink]="['/clientes/detalle', evento.idEvento]" class="btn-detalle">
+            Ver detalle
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-eventos" *ngIf="eventos.length === 0">
+      No hay eventos disponibles en este momento.
+    </div>
+
+  </div>
+
+</div>

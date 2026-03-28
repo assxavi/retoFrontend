@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GestionEventos } from './gestion-eventos';
+import { GestionEventosComponent } from './gestion-eventos';
 
 describe('GestionEventos', () => {
-  let component: GestionEventos;
-  let fixture: ComponentFixture<GestionEventos>;
+  let component: GestionEventosComponent;
+  let fixture: ComponentFixture<GestionEventosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GestionEventos]
+      imports: [GestionEventosComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GestionEventos);
+    fixture = TestBed.createComponent(GestionEventosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

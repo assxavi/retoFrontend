@@ -1,1 +1,30 @@
-<p>navbar works!</p>
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/eventos">Bailes de Salón</a>
+  </div>
+
+  <div class="navbar-menu">
+    <a routerLink="/eventos" routerLinkActive="active">Eventos</a>
+
+    <ng-container *ngIf="isAdmin">
+      <a routerLink="/admin/eventos" routerLinkActive="active">Gestión</a>
+    </ng-container>
+
+    <ng-container *ngIf="authService.isLoggedIn() && !isAdmin">
+      <a routerLink="/clientes/misReservas" routerLinkActive="active">Mis Reservas</a>
+    </ng-container>
+  </div>
+
+  <div class="navbar-user">
+    <span>{{ username }}</span>
+
+    <ng-container *ngIf="!authService.isLoggedIn()">
+      <a routerLink="/login" class="btn-login">Iniciar Sesión</a>
+      <a routerLink="/registro" class="btn-registro">Registro</a>
+    </ng-container>
+
+    <ng-container *ngIf="authService.isLoggedIn()">
+      <button (click)="logout()">Cerrar Sesión</button>
+    </ng-container>
+  </div>
+</nav>

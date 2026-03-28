@@ -1,0 +1,78 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 64px;
+  background-color: #8B0000;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.navbar-brand a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 1.5rem;
+
+  a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 0.3rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+
+    &:hover, &.active {
+      color: white;
+      border-bottom-color: white;
+    }
+  }
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  span {
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  a, button {
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+  }
+
+  .btn-login {
+    background: transparent;
+    border: 1px solid white !important;
+    color: white;
+  }
+
+  .btn-registro {
+    background: white;
+    color: #8B0000;
+  }
+
+  button {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+
+    &:hover {
+      background: rgba(255,255,255,0.1);
+    }
+  }
+}

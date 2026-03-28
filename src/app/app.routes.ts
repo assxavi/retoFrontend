@@ -25,7 +25,7 @@ export const routes: Routes = [
   },
   {
     path: 'clientes',
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       {
         path: 'misReservas',

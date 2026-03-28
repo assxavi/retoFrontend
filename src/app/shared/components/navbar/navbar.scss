@@ -4,7 +4,7 @@
   justify-content: space-between;
   padding: 0 2rem;
   height: 64px;
-  background-color: #8B0000;
+  background-color: var(--color-primary);
   color: white;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
@@ -63,7 +63,7 @@
 
   .btn-registro {
     background: white;
-    color: #8B0000;
+    color: var(--color-accent);
   }
 
   button {

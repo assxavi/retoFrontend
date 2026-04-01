@@ -24,6 +24,11 @@ export const routes: Routes = [
       .then(m => m.EventosComponent)
   },
   {
+    path: 'home',
+    loadComponent: () => import('./pages/public/home/home')
+      .then(m => m.HomeComponent)
+  },
+  {
     path: 'clientes',
 
    // TODO: descomentar cuando el backend esté listo

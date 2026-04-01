@@ -1,0 +1,311 @@
+:host {
+  display: block;
+  background-color: #f8f5f5;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2f2f2f;
+}
+
+$granate: #7a1628;
+$granate-oscuro: #5f1020;
+$fondo: #f8f5f5;
+$texto: #4d4d4d;
+$linea: rgba(122, 22, 40, 0.35);
+$gris-claro: #e9e2e2;
+$blanco: #ffffff;
+
+section {
+  padding: 3rem 2.5rem;
+  border-top: 1px solid $linea;
+  background-color: $fondo;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+/* BOTONES */
+.btn,
+.btn-detalle {
+  display: inline-block;
+  text-decoration: none;
+  background-color: $granate;
+  color: $blanco;
+  padding: 0.75rem 1.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover,
+.btn-detalle:hover {
+  background-color: $granate-oscuro;
+}
+
+/* HOME */
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  text-align: center;
+}
+
+.home-contenido {
+  max-width: 900px;
+  display: flex;
+    flex-direction: row;
+    text-align: left;
+    gap: 4rem;
+    margin-bottom: 3rem;
+}
+
+.home-imagen {
+  width: 100%;
+  border: #4d4d4d 1px solid;
+}
+
+.home-contenido h1 {
+  font-size: 2.2rem;
+  color: $granate;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.home-contenido h1 span {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.home-contenido p {
+  color: $texto;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.home-contenido p + p {
+  margin-top: 0.2rem;
+}
+
+.home-contenido .btn {
+  margin-top: 1.2rem;
+}
+
+.home-eventos {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(160px, 220px));
+  justify-content: center;
+  gap: 2rem;
+}
+
+.evento-card {
+  text-align: center;
+}
+
+.evento-imagen {
+  height: 130px;
+  object-fit: cover;
+  background-color: $gris-claro;
+  margin-bottom: 0.9rem;
+}
+
+.evento-card h3 {
+  font-size: 0.78rem;
+  color: $granate;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* PROXIMOS EVENTOS */
+.proximos-eventos h2 {
+  font-size: 1.5rem;
+  color: $granate;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+}
+
+.eventos-lista {
+    width: 70%;
+    margin: auto;
+      margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.evento-list {
+  display: grid;
+  grid-template-columns: 80px 1fr 320px;
+  align-items: center;
+  margin-top: 4rem;
+
+  gap: 2rem;
+}
+
+.evento-fecha {
+  text-align: center;
+  color: $granate;
+  position: relative;
+}
+
+.evento-fecha::after {
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: -0.75rem;
+  width: 2px;
+  height: 250%;
+  background-color: $linea;
+}
+
+.evento-fecha p:first-child {
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.evento-fecha p:last-child {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+.evento-info {
+  text-align: left;
+  padding-right: 4rem;
+}
+.evento-info h3 {
+  font-size: 0.95rem;
+  color: $granate;
+  margin-bottom: 0.45rem;
+}
+
+.evento-info p {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: $texto;
+  margin-bottom: 0.8rem;
+}
+
+.btn-detalle {
+  padding: 0.55rem 1rem;
+  font-size: 0.72rem;
+}
+
+.evento-img img {
+  height: 110px;
+  object-fit: cover;
+  background-color: $gris-claro;
+}
+
+/* RESERVA */
+.reserva {
+  text-align: center;
+}
+
+.reserva h2 {
+  font-size: 1.8rem;
+  color: $granate;
+  margin-bottom: 0.7rem;
+}
+
+.reserva > p {
+  color: $texto;
+  margin-bottom: 2rem;
+}
+
+.reserva-pasos {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.paso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90px;
+}
+
+.paso i {
+  font-size: 1.4rem;
+  color: $granate;
+  margin-bottom: 0.6rem;
+}
+
+.paso p {
+  color: $granate;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  section {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .home-eventos {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+
+  .evento-imagen {
+    height: 180px;
+  }
+
+  .evento-list {
+    grid-template-columns: 70px 1fr;
+  }
+
+  .evento-img {
+    grid-column: 1 / -1;
+  }
+
+  .evento-img img {
+    height: 180px;
+    margin-top: 0.5rem;
+  }
+
+  .evento-fecha::after {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-contenido h1 {
+    font-size: 1.7rem;
+  }
+
+  .proximos-eventos h2,
+  .reserva h2 {
+    font-size: 1.35rem;
+  }
+
+  .evento-list {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .evento-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .reserva-pasos {
+    gap: 1.5rem;
+  }
+}

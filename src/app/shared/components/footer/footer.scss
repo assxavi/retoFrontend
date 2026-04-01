@@ -1,0 +1,46 @@
+.footer {
+  background-color: #7a1628;
+  color: white;
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-logo img {
+  width: 120px;
+  height: auto;
+  display: block;
+}
+
+.footer-links {
+  display: flex;
+  gap: 4rem;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-col h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #d4a62a;
+  text-transform: uppercase;
+}
+
+.footer-col a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  transition: opacity 0.2s ease;
+}
+
+.footer-col a:hover {
+  opacity: 0.75;
+}

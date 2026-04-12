@@ -46,7 +46,7 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
-    canActivate: [adminGuard],
+    // canActivate: [adminGuard],
     children: [
       {
         path: 'eventos',

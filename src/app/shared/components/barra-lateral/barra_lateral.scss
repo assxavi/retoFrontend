@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-red);
+  align-self: stretch;
+}
+
+aside {
+  padding: 1rem 2rem;
+  border-right: 5px solid var(--color-red);
+  max-width: 220px;
+  height: 100%;
+}

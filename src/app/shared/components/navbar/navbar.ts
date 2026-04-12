@@ -25,7 +25,8 @@ export class NavbarComponent {
   }
 
   get isAdmin(): boolean {
-    return this.rol === 'ROLE_ADMON';
+    // return this.rol === 'ROLE_ADMON';
+    return true;
   }
 
   logout(): void {

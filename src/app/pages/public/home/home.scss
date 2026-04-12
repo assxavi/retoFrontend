@@ -15,7 +15,7 @@ $blanco: #ffffff;
 
 section {
   padding: 3rem 2.5rem;
-  border-top: 1px solid $linea;
+
   background-color: $fondo;
 }
 
@@ -63,10 +63,10 @@ img {
 .home-contenido {
   max-width: 900px;
   display: flex;
-    flex-direction: row;
-    text-align: left;
-    gap: 4rem;
-    margin-bottom: 3rem;
+  flex-direction: row;
+  text-align: left;
+  gap: 4rem;
+  margin-bottom: 3rem;
 }
 
 .home-imagen {
@@ -135,12 +135,11 @@ img {
 }
 
 .eventos-lista {
-    width: 70%;
-    margin: auto;
-      margin-bottom: 4rem;
+  width: 70%;
+  margin: auto;
+  margin-bottom: 4rem;
   display: flex;
   flex-direction: column;
- 
 }
 
 .evento-list {
@@ -158,7 +157,7 @@ img {
 }
 
 .evento-fecha::after {
-  content: "";
+  content: '';
   position: absolute;
   top: -30px;
   right: -0.75rem;

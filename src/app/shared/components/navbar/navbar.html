@@ -1,6 +1,6 @@
 <nav class="navbar">
   <div class="navbar-brand">
-    <a routerLink="/eventos">Bailes de Salón</a>
+    <a routerLink="/"><img src="assets/img/logo.png" alt="Bailes de Salon" /></a>
   </div>
 
   <div class="navbar-menu">
@@ -16,15 +16,19 @@
   </div>
 
   <div class="navbar-user">
-    <span>{{ username }}</span>
+    @if (authService.isLoggedIn()) {
+      <span>{{ username }}</span>
+    }
 
-    <ng-container *ngIf="!authService.isLoggedIn()">
-      <a routerLink="/login" class="btn-login">Iniciar Sesión</a>
-      <a routerLink="/registro" class="btn-registro">Registro</a>
-    </ng-container>
-
-    <ng-container *ngIf="authService.isLoggedIn()">
-      <button (click)="logout()">Cerrar Sesión</button>
-    </ng-container>
+    @if (!authService.isLoggedIn()) {
+      <ng-container>
+        <a routerLink="/login" class="btn-login">Iniciar Sesión</a>
+        <a routerLink="/registro" class="btn-registro">Registro</a>
+      </ng-container>
+    } @else {
+      <ng-container>
+        <button (click)="logout()">Cerrar Sesión</button>
+      </ng-container>
+    }
   </div>
 </nav>

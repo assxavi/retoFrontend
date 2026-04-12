@@ -8,13 +8,12 @@ import { Router } from '@angular/router';
   selector: 'app-navbar',
   imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.scss'
+  styleUrl: './navbar.scss',
 })
 export class NavbarComponent {
-
   constructor(
     public authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   get username(): string {

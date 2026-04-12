@@ -1,1 +1,9 @@
-<app-barra-lateral></app-barra-lateral>
+<app-barra-lateral
+  title="Eventos"
+  [links]="[
+    { label: 'Activos', route: '/admin/eventos/activos', icon: 'fa-circle-check' },
+    { label: 'Cancelados', route: '/admin/eventos/cancelados', icon: 'fa-ban' },
+    { label: 'Terminados', route: '/admin/eventos/terminados', icon: 'fa-flag' },
+    { label: 'Desactivados', route: '/admin/eventos/desactivados', icon: 'fa-eye-slash' },
+  ]"
+></app-barra-lateral>

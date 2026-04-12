@@ -1,4 +1,4 @@
-.navbar {
+.app-navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,7 +14,7 @@
   }
 }
 
-.navbar-brand a {
+.app-navbar__brand a {
   color: var(--color-red);
   text-decoration: none;
   font-size: 1.3rem;
@@ -22,7 +22,7 @@
   letter-spacing: 1px;
 }
 
-.navbar-menu {
+.app-navbar__menu {
   display: flex;
   gap: 1.5rem;
 
@@ -38,13 +38,12 @@
 
     &:hover,
     &.active {
-      // color: white;
       border-bottom-color: var(--color-red);
     }
   }
 }
 
-.navbar-user {
+.app-navbar__user {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -72,7 +71,6 @@
     &:hover,
     &.active {
       background: var(--color-red);
-      // border: 1px solid var(--color-red);
       color: var(--color-bg);
     }
   }

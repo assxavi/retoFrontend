@@ -1,9 +1,9 @@
-<nav class="navbar">
-  <div class="navbar-brand">
+<nav class="app-navbar">
+  <div class="app-navbar__brand">
     <a routerLink="/"><img src="assets/img/logo.png" alt="Bailes de Salon" /></a>
   </div>
 
-  <div class="navbar-menu">
+  <div class="app-navbar__menu">
     <a routerLink="/eventos" routerLinkActive="active">Eventos</a>
 
     <ng-container *ngIf="isAdmin">
@@ -15,7 +15,7 @@
     </ng-container>
   </div>
 
-  <div class="navbar-user">
+  <div class="app-navbar__user">
     @if (authService.isLoggedIn()) {
       <span>{{ username }}</span>
     }

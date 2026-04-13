@@ -7,3 +7,19 @@
     { label: 'Desactivados', route: '/admin/eventos/desactivados', icon: 'fa-eye-slash' },
   ]"
 ></app-barra-lateral>
+
+<app-tabla
+  [tamanoPagina]="2"
+  [columnas]="[
+    { campo: 'nombre', label: 'Nombre' },
+    { campo: 'fecha', label: 'Fecha' },
+    { campo: 'aforo', label: 'Aforo' },
+    { campo: 'precio', label: 'Precio' },
+  ]"
+  [datos]="eventos"
+  [acciones]="{ verDetalle: true, editar: true, cancelar: true, eliminar: true }"
+  (verDetalle)="onVerDetalle($event)"
+  (editar)="onEditar($event)"
+  (cancelar)="onCancelar($event)"
+  (eliminar)="onEliminar($event)"
+/>

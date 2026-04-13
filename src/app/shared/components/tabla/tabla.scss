@@ -1,0 +1,111 @@
+:host {
+  display: block;
+}
+.tabla-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 1.5rem;
+  background-color: var(--color-bg); // ← mismo fondo que la app
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: transparent; // ← elimina el blanco de Bootstrap
+  margin: 0 auto; // ← centra la tabla
+}
+
+thead tr {
+  border-bottom: 2px solid var(--color-red);
+
+  th {
+    color: var(--color-red);
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+}
+tbody tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition: background 0.15s;
+  background-color: transparent; // ← añade esto
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  td {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    color: #333;
+    background-color: transparent; // ← y esto, Bootstrap pisa el td también
+  }
+}
+
+.acciones {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-accion {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.btn-detalle {
+  color: var(--color-red);
+}
+.btn-editar {
+  color: var(--color-red);
+}
+.btn-cancelar {
+  color: var(--color-red);
+}
+.btn-eliminar {
+  color: var(--color-red);
+}
+
+// Paginación
+.paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--color-red);
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) {
+      background: rgba(var(--color-red-rgb), 0.1);
+    }
+
+    &.activa {
+      font-weight: bold;
+      border-bottom: 2px solid var(--color-red);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+  }
+}

@@ -5,7 +5,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export interface SidebarLink {
   label: string;
   route: string;
-  icon?: string; // clase de FontAwesome, ej: 'fa-calendar'
+  icon?: string;
 }
 
 @Component({

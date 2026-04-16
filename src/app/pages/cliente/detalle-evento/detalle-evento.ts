@@ -12,6 +12,7 @@ import { Evento } from '../../../models/evento.model';
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './detalle-evento.html',
   styleUrl: './detalle-evento.scss',
+  styleUrl: './detalle-evento.scss',
 })
 export class DetalleEventoComponent implements OnInit {
   evento: Evento | null = null;
@@ -19,6 +20,7 @@ export class DetalleEventoComponent implements OnInit {
   cargando: boolean = true;
   mensaje: string = '';
   error: string = '';
+  plazasLibres: number = 45; // Simulación de plazas libres
 
   constructor(
     private route: ActivatedRoute,
@@ -26,43 +28,53 @@ export class DetalleEventoComponent implements OnInit {
     private reservaService: ReservaService,
     private authService: AuthService,
     private router: Router,
+    private router: Router,
   ) {}
 
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.cargarEvento(Number(id));
-    }
-  }
-
   cargarEvento(id: number): void {
+    this.evento = {
+      idEvento: id,
+      nombre: 'Tango Argentino',
+      descripcion:
+        'Una noche apasionada de tango con los mejores bailarines de la región. Ven a disfrutar de la música y el baile en un ambiente único.',
+      fechaInicio: new Date('2026-04-15'),
+      duracion: 120,
+      direccion: 'Salón Gran Vía, Logroño',
+      estado: 'ACTIVO',
+      destacado: 'S',
+      aforoMaximo: 50,
+      minimoAsistencia: 10,
+      precioVenta: 25,
+      idTipo: 1,
+    };
     this.cargando = false;
   }
 
-  reservar(): void {
-    if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/login']);
-      return;
-    }
 
-    if (this.cantidad < 1 || this.cantidad > 10) {
-      this.error = 'La cantidad debe ser entre 1 y 10';
-      return;
-    }
 
-    this.reservaService.reservar(this.evento!.idEvento, this.cantidad).subscribe({
-      next: () => {
-        this.mensaje = 'Reserva realizada con éxito';
-        this.error = '';
-      },
-      error: (err) => {
-        this.error = err.error?.mensaje || 'Error al realizar la reserva';
-        this.mensaje = '';
-      },
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
+      if(id){
+        this.cargarEvento(id);
+      }
     });
   }
 
-  get isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
+  sumarPlazas(): void {
+    if (this.cantidad < this.plazasLibres) {
+      this.cantidad++;
+    }  
+  }
+
+  restarPlazas(): void{
+    if (this.cantidad > 1) {
+      this.cantidad--;
+    }
+  }
+
+  reservarPlazas(): void {
+    console.log(`Reservando ${this.cantidad} plazas para el evento ${this.evento?.nombre}`);
   }
 }
+

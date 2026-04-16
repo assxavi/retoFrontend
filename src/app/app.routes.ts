@@ -41,7 +41,13 @@ export const routes: Routes = [
           import('./pages/cliente/detalle-evento/detalle-evento').then(
             (m) => m.DetalleEventoComponent,
           ),
-      },
+      },{
+        path: 'eventos',
+        loadComponent: () =>
+          import('./pages/cliente/gestion-eventos/gestion-eventos').then(
+            (m) => m.GestionEventosComponent,
+          ),
+      }
     ],
   },
   {

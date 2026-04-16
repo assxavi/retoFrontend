@@ -5,10 +5,10 @@ import { Tabla } from '../../../shared/components/tabla/tabla';
 @Component({
   selector: 'app-gestion-eventos',
   imports: [BarraLateral, Tabla],
-  templateUrl: './gestion-eventos.html',
-  styleUrl: './gestion-eventos.scss',
+  templateUrl: './eventos-cliente.html',
+  styleUrl: './eventos-cliente.scss',
 })
-export class GestionEventosComponent {
+export class EventosClienteComponent {
 
     eventos = [
     { id: 1, nombre: 'Salsa en la Plaza', fecha: '15/06/2025', aforo: 120, precio: '25€' },
@@ -23,5 +23,9 @@ export class GestionEventosComponent {
   }
   onVerDetalle(evento: any) {
     console.log('Ver detalle:', evento);
+  }
+
+  onReservar(evento: any) {
+    console.log('Reservar:', evento);
   }
 }

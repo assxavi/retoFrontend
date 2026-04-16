@@ -63,18 +63,10 @@ tbody tr {
   }
 }
 
-.btn-detalle {
+.btn-detalle , .btn-editar, .btn-cancelar, .btn-eliminar, .btn-reservar {
   color: var(--color-red);
 }
-.btn-editar {
-  color: var(--color-red);
-}
-.btn-cancelar {
-  color: var(--color-red);
-}
-.btn-eliminar {
-  color: var(--color-red);
-}
+
 
 // Paginación
 .paginacion {

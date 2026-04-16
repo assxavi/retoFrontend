@@ -44,8 +44,8 @@ export const routes: Routes = [
       },{
         path: 'eventos',
         loadComponent: () =>
-          import('./pages/cliente/gestion-eventos/gestion-eventos').then(
-            (m) => m.GestionEventosComponent,
+          import('./pages/cliente/eventos-cliente/eventos-cliente').then(
+            (m) => m.EventosClienteComponent,
           ),
       }
     ],

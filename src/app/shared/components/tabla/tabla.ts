@@ -10,6 +10,7 @@ export interface TablaAcciones {
   editar?: boolean;
   cancelar?: boolean;
   eliminar?: boolean;
+  reservar?: boolean;
 }
 
 @Component({
@@ -28,6 +29,7 @@ export class Tabla {
   @Output() editar = new EventEmitter<any>();
   @Output() cancelar = new EventEmitter<any>();
   @Output() eliminar = new EventEmitter<any>();
+  @Output() reservar = new EventEmitter<any>();
 
   paginaActual = 0;
   datosPagina: any[] = [];

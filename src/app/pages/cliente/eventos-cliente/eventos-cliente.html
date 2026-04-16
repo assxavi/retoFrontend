@@ -13,8 +13,9 @@ title="Eventos"
 {campo: 'precio', label: 'Precio'}
 ]"
 [datos]="eventos"
-[acciones]="{verDetalle: true, cancelar: true}"
+[acciones]="{verDetalle: true, cancelar: true, reservar: true}"
 [tamanoPagina]="2"
 (verDetalle)="onVerDetalle($event)"
-(cancelar)="onCancelar($event)">
+(cancelar)="onCancelar($event)"
+(reservar)="onReservar($event)">
 </app-tabla>

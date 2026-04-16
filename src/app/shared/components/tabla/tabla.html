@@ -6,6 +6,7 @@
           <th>{{ col.label }}</th>
         }
         @if (tieneAcciones()) {
+          
           <th>Opciones</th>
         }
       </tr>
@@ -25,6 +26,15 @@
                   (click)="verDetalle.emit(fila)"
                 >
                   <i class="fas fa-magnifying-glass"></i>
+                </button>
+              }
+              @if (acciones.reservar) {
+                <button
+                  class="btn-accion btn-reservar"
+                  title="Reservar"
+                  (click)="reservar.emit(fila)"
+                >
+                  <i class="fas fa-ticket-alt"></i>
                 </button>
               }
               @if (acciones.editar) {

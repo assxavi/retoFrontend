@@ -1,10 +1,8 @@
 <div class="detalle-container">
-
   <div class="loading" *ngIf="cargando">Cargando evento...</div>
   <div class="error-msg" *ngIf="error && !cargando">{{ error }}</div>
 
   <div class="detalle-content" *ngIf="evento && !cargando">
-
     <div class="evento-info">
       <h1>{{ evento.nombre }}</h1>
       <p class="descripcion">{{ evento.descripcion }}</p>
@@ -12,7 +10,7 @@
       <div class="datos-grid">
         <div class="dato">
           <span class="label">Fecha</span>
-          <span>{{ evento.fechaInicio | date:'dd/MM/yyyy' }}</span>
+          <span>{{ evento.fechaInicio | date: 'dd/MM/yyyy' }}</span>
         </div>
         <div class="dato">
           <span class="label">Duración</span>
@@ -32,7 +30,7 @@
         </div>
         <div class="dato">
           <span class="label">Precio</span>
-          <span class="precio">{{ evento.precioVenta }}€ / persona</span>
+          <span class="precio">{{ evento.precio }}€ / persona</span>
         </div>
       </div>
     </div>
@@ -46,24 +44,14 @@
       <ng-container *ngIf="!mensaje">
         <div class="form-group">
           <label>Número de personas (máx. 10)</label>
-          <input
-            type="number"
-            [(ngModel)]="cantidad"
-            min="1"
-            max="10"
-          />
+          <input type="number" [(ngModel)]="cantidad" min="1" max="10" />
         </div>
 
         <div class="precio-total">
-          Total: <strong>{{ evento.precioVenta * cantidad }}€</strong>
+          Total: <strong>{{ evento.precio * cantidad }}€</strong>
         </div>
 
-        <button
-          *ngIf="isLoggedIn"
-          (click)="reservar()"
-          class="btn-reservar">
-          Reservar
-        </button>
+        <button *ngIf="isLoggedIn" (click)="reservar()" class="btn-reservar">Reservar</button>
 
         <div class="no-login" *ngIf="!isLoggedIn">
           <p>Debes iniciar sesión para reservar</p>
@@ -71,6 +59,5 @@
         </div>
       </ng-container>
     </div>
-
   </div>
 </div>

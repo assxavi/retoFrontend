@@ -1,16 +1,18 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Evento } from '../../models/evento.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventoService {
-
+  private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/eventos';
 
-  constructor(private http: HttpClient) {}
+  getListado(): Observable<Evento[]> {
+    return this.http.get<Evento[]>(`${this.apiUrl}/listado`);
+  }
 
   getActivos(): Observable<Evento[]> {
     return this.http.get<Evento[]>(`${this.apiUrl}/activos`);
@@ -25,14 +27,14 @@ export class EventoService {
   }
 
   crear(evento: Evento): Observable<Evento> {
-    return this.http.post<Evento>(this.apiUrl, evento);
+    return this.http.post<Evento>(`${this.apiUrl}/alta`, evento);
   }
 
   editar(id: number, evento: Evento): Observable<Evento> {
-    return this.http.put<Evento>(`${this.apiUrl}/${id}`, evento);
+    return this.http.put<Evento>(`${this.apiUrl}/editar/${id}`, evento);
   }
 
   cancelar(id: number): Observable<void> {
-    return this.http.patch<void>(`${this.apiUrl}/cancelar/${id}`, {});
+    return this.http.put<void>(`${this.apiUrl}/cancelar/${id}`, {});
   }
 }

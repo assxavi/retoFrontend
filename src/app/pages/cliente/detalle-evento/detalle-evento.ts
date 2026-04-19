@@ -11,10 +11,9 @@ import { Evento } from '../../../models/evento.model';
   selector: 'app-detalle-evento',
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './detalle-evento.html',
-  styleUrl: './detalle-evento.scss'
+  styleUrl: './detalle-evento.scss',
 })
 export class DetalleEventoComponent implements OnInit {
-
   evento: Evento | null = null;
   cantidad: number = 1;
   cargando: boolean = true;
@@ -26,7 +25,7 @@ export class DetalleEventoComponent implements OnInit {
     private eventoService: EventoService,
     private reservaService: ReservaService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -37,22 +36,8 @@ export class DetalleEventoComponent implements OnInit {
   }
 
   cargarEvento(id: number): void {
-  this.cargando = false;
-  this.evento = {
-    idEvento: id,
-    nombre: 'Tango Argentino',
-    descripcion: 'Una noche apasionada de tango con los mejores bailarines de la región. Ven a disfrutar de la música y el baile en un ambiente único.',
-    fechaInicio: new Date('2026-04-15'),
-    duracion: 120,
-    direccion: 'Salón Gran Vía, Logroño',
-    estado: 'ACTIVO',
-    destacado: 'S',
-    aforoMaximo: 50,
-    minimoAsistencia: 10,
-    precioVenta: 25,
-    idTipo: 1
-  };
-}
+    this.cargando = false;
+  }
 
   reservar(): void {
     if (!this.authService.isLoggedIn()) {
@@ -73,7 +58,7 @@ export class DetalleEventoComponent implements OnInit {
       error: (err) => {
         this.error = err.error?.mensaje || 'Error al realizar la reserva';
         this.mensaje = '';
-      }
+      },
     });
   }
 

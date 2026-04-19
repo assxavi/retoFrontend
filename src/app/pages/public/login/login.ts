@@ -10,35 +10,35 @@ import { RouterLink } from '@angular/router';
   selector: 'app-login',
   imports: [CommonModule, FormsModule, HttpClientModule, RouterLink],
   templateUrl: './login.html',
-  styleUrl: './login.scss'
+  styleUrl: './login.scss',
 })
 export class LoginComponent {
-
   username: string = '';
   password: string = '';
   error: string = '';
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   login(): void {
     this.authService.login(this.username, this.password).subscribe({
-      next: (respuesta) => {
-        this.authService.guardarToken(respuesta.token);
-        localStorage.setItem('rol', respuesta.rol);
-        localStorage.setItem('username', this.username);
+      next: () => {
+        // Si la llamada tiene éxito, las credenciales son correctas
+        // De momento el rol lo hardcodeamos, luego lo traeremos del back
+        this.authService.guardarCredenciales(this.username, this.password, 'ROLE_ADMON');
 
-        if (respuesta.rol === 'ROLE_ADMON') {
+        const rol = localStorage.getItem('rol');
+        if (rol === 'ROLE_ADMON') {
           this.router.navigate(['/admin/eventos']);
         } else {
           this.router.navigate(['/eventos']);
         }
       },
-      error: (err) => {
+      error: () => {
         this.error = 'Usuario o contraseña incorrectos';
-      }
+      },
     });
   }
 }

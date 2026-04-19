@@ -1,38 +1,45 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080';
 
-  constructor(private http: HttpClient) {}
-
   login(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, { username, password });
+    // Verificamos credenciales llamando a un endpoint protegido
+    const credentials = btoa(`${username}:${password}`);
+    const headers = new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+    });
+    return this.http.get(`${this.apiUrl}/eventos/listado`, { headers });
   }
 
-  logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
+  guardarCredenciales(username: string, password: string, rol: string): void {
+    const credentials = btoa(`${username}:${password}`);
+    localStorage.setItem('credentials', credentials);
+    localStorage.setItem('username', username);
+    localStorage.setItem('rol', rol);
   }
 
-  guardarToken(token: string): void {
-    localStorage.setItem('token', token);
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem('token');
+  getCredentials(): string | null {
+    return localStorage.getItem('credentials');
   }
 
   isLoggedIn(): boolean {
-    // return this.getToken() !== null;
-    return true;
+    return this.getCredentials() !== null;
+  }
+
+  logout(): void {
+    localStorage.removeItem('credentials');
+    localStorage.removeItem('username');
+    localStorage.removeItem('rol');
   }
 
   registro(datos: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/registro`, datos);
+    return this.http.post(`${this.apiUrl}/usuarios/crear`, datos);
   }
 }

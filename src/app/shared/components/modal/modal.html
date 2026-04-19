@@ -1,0 +1,15 @@
+@if (visible) {
+  <div class="modal-backdrop" (click)="cerrar.emit()">
+    <div class="modal-contenido" (click)="$event.stopPropagation()">
+      <div class="modal-cabecera">
+        <h3>{{ titulo }}</h3>
+        <button class="modal-cerrar" (click)="cerrar.emit()">
+          <i class="fas fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-cuerpo">
+        <ng-content />
+      </div>
+    </div>
+  </div>
+}

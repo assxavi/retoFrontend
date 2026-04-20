@@ -31,6 +31,7 @@ export class RegistroComponent {
   ) {}
 
   registrar(): void {
+    console.log('Intentando registrar usuario:', this.usuario);
     if (this.usuario.password !== this.usuario.confirmPassword) {
       this.error = 'Las contraseñas no coinciden';
       return;
@@ -45,6 +46,7 @@ export class RegistroComponent {
 
     this.authService.registro(datosRegistro).subscribe({
       next: () => {
+        console.log('Hola desde next');
         this.exito = 'Cuenta creada correctamente. Redirigiendo...';
         setTimeout(() => this.router.navigate(['/login']), 2000);
       },

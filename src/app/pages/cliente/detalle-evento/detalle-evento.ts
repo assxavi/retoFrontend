@@ -12,7 +12,6 @@ import { Evento } from '../../../models/evento.model';
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './detalle-evento.html',
   styleUrl: './detalle-evento.scss',
-  styleUrl: './detalle-evento.scss',
 })
 export class DetalleEventoComponent implements OnInit {
   evento: Evento | null = null;
@@ -27,7 +26,6 @@ export class DetalleEventoComponent implements OnInit {
     private eventoService: EventoService,
     private reservaService: ReservaService,
     private authService: AuthService,
-    private router: Router,
     private router: Router,
   ) {}
 
@@ -44,7 +42,7 @@ export class DetalleEventoComponent implements OnInit {
       destacado: 'S',
       aforoMaximo: 50,
       minimoAsistencia: 10,
-      precioVenta: 25,
+      precio: 25,
       idTipo: 1,
     };
     this.cargando = false;

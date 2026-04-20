@@ -40,6 +40,7 @@ export class AuthService {
   }
 
   registro(datos: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/usuarios/crear`, datos);
+    console.log('Enviando datos de registro:', datos);
+    return this.http.post(`${this.apiUrl}/usuarios/alta`, datos);
   }
 }

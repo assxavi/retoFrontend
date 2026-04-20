@@ -1,1 +1,53 @@
-<p>gestion-eventos works!</p>
+<app-barra-lateral
+  title="Eventos"
+  [links]="[
+    { label: 'Activos', route: '/admin/eventos/activos', icon: 'fa-circle-check' },
+    { label: 'Cancelados', route: '/admin/eventos/cancelados', icon: 'fa-ban' },
+    { label: 'Terminados', route: '/admin/eventos/terminados', icon: 'fa-flag' },
+    { label: 'Desactivados', route: '/admin/eventos/desactivados', icon: 'fa-eye-slash' },
+  ]"
+></app-barra-lateral>
+
+<div class="contenido">
+  <div class="contenido__cabecera">
+    <app-boton texto="Nuevo Evento" icono="fa-plus" (click)="modalVisible = true" />
+  </div>
+  <app-tabla
+    [tamanoPagina]="5"
+    [columnas]="[
+      { campo: 'nombre', label: 'Nombre' },
+      { campo: 'fechaInicio', label: 'Fecha' },
+      { campo: 'aforoMaximo', label: 'Aforo' },
+      { campo: 'precio', label: 'Precio' },
+      { campo: 'estado', label: 'Estado' },
+    ]"
+    [datos]="eventos"
+    [acciones]="{ verDetalle: true, editar: true, cancelar: true, eliminar: true }"
+    (verDetalle)="onVerDetalle($event)"
+    (editar)="onEditar($event)"
+    (cancelar)="onCancelar($event)"
+    (eliminar)="onEliminar($event)"
+  />
+</div>
+
+<app-modal
+  titulo="{{ eventoSeleccionado ? 'Editar Evento' : 'Nuevo Evento' }}"
+  [visible]="modalVisible"
+  (cerrar)="cerrarModal()"
+>
+  <app-form-evento
+    [eventoEditar]="eventoSeleccionado"
+    (guardar)="onGuardarEvento($event)"
+    (cancelar)="cerrarModal()"
+  />
+</app-modal>
+
+<app-modal
+  titulo="Detalle del Evento"
+  [visible]="modalDetalleVisible"
+  (cerrar)="modalDetalleVisible = false; eventoDetalle = null"
+>
+  @if (eventoDetalle) {
+    <app-detalle-evento-admin [evento]="eventoDetalle" />
+  }
+</app-modal>

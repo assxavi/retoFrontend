@@ -1,76 +1,54 @@
-<div class="detalle-container">
+<div class="container-img">
+  <img src="assets/img/tango.jpg" class="w-100" alt="evento" />
+</div>
 
-  <div class="loading" *ngIf="cargando">Cargando evento...</div>
-  <div class="error-msg" *ngIf="error && !cargando">{{ error }}</div>
+@if (evento) {
+  <div class="container mt-3">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-center gap-3">
+        <h2>{{ evento.nombre }}</h2>
+        <span class="precio fw-bold fs-4">{{ evento.precio }}€</span>
+      </div>
 
-  <div class="detalle-content" *ngIf="evento && !cargando">
+      <div class="d-flex flex-column align-items-end gap-1">
+        @if (evento.destacado === 'S') {
+          <span class="border border-warning text-warning badge">DESTACADO</span>
+        }
+        @switch (evento.estado) {
+          @case ('ACTIVO') {
+            <span class="border border-success text-success badge">ACTIVO</span>
+          }
 
-    <div class="evento-info">
-      <h1>{{ evento.nombre }}</h1>
-      <p class="descripcion">{{ evento.descripcion }}</p>
-
-      <div class="datos-grid">
-        <div class="dato">
-          <span class="label">Fecha</span>
-          <span>{{ evento.fechaInicio | date:'dd/MM/yyyy' }}</span>
-        </div>
-        <div class="dato">
-          <span class="label">Duración</span>
-          <span>{{ evento.duracion }} minutos</span>
-        </div>
-        <div class="dato">
-          <span class="label">Dirección</span>
-          <span>{{ evento.direccion }}</span>
-        </div>
-        <div class="dato">
-          <span class="label">Aforo máximo</span>
-          <span>{{ evento.aforoMaximo }} personas</span>
-        </div>
-        <div class="dato">
-          <span class="label">Mínimo asistencia</span>
-          <span>{{ evento.minimoAsistencia }} personas</span>
-        </div>
-        <div class="dato">
-          <span class="label">Precio</span>
-          <span class="precio">{{ evento.precioVenta }}€ / persona</span>
-        </div>
+          @case ('CANCELADO') {
+            <span class="border border-danger text-danger">CANCELADO</span>
+          }
+          @case ('TERMINADO') {
+            <span class="border border-success text-success">TERMINADO</span>
+          }
+        }
       </div>
     </div>
 
-    <div class="reserva-panel">
-      <h2>Reservar entradas</h2>
+    <p class="text-muted small">{{ evento.direccion }}</p>
+    <p class="text-muted small">{{ evento.fechaInicio | date: 'dd/MM/yyyy' }}</p>
+    <p class="mt-3">{{ evento.descripcion }}</p>
 
-      <div class="exito" *ngIf="mensaje">{{ mensaje }}</div>
-      <div class="error-msg" *ngIf="error">{{ error }}</div>
+    <p>
+      Plazas libres: <span class="text-success fw-bold">{{ plazasLibres }}</span>
+    </p>
 
-      <ng-container *ngIf="!mensaje">
-        <div class="form-group">
-          <label>Número de personas (máx. 10)</label>
-          <input
-            type="number"
-            [(ngModel)]="cantidad"
-            min="1"
-            max="10"
-          />
+      <div class="d-flex justify-content-end align-items-center gap-2 mt-3">
+        <div class="d-flex flex-column align-items-center">
+          <small class="text-muted mb-1">ENTRADAS (MÁX. 10)</small>
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-outline-secondary" (click)="restarPlazas()">-</button>
+            <input type="text" class="form-control text-center" style="width: 50px" [value]="cantidad" disabled>
+            <button class="btn btn-outline-secondary" (click)="sumarPlazas()">+</button>
+          </div>
         </div>
-
-        <div class="precio-total">
-          Total: <strong>{{ evento.precioVenta * cantidad }}€</strong>
-        </div>
-
-        <button
-          *ngIf="isLoggedIn"
-          (click)="reservar()"
-          class="btn-reservar">
-          Reservar
-        </button>
-
-        <div class="no-login" *ngIf="!isLoggedIn">
-          <p>Debes iniciar sesión para reservar</p>
-          <a routerLink="/login">Iniciar Sesión</a>
-        </div>
-      </ng-container>
-    </div>
-
+        <button class="btn btn-reservar px-4 align-self-end" (click)="reservarPlazas()">RESERVAR</button>
+      </div>
   </div>
-</div>
+} @else {
+  <p>Cargando...</p>
+}

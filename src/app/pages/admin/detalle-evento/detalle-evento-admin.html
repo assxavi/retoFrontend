@@ -1,0 +1,42 @@
+<div class="detalle">
+  <div class="detalle__fila">
+    <span class="detalle__label">Nombre</span>
+    <span class="detalle__valor">{{ evento.nombre }}</span>
+  </div>
+  <div class="detalle__fila">
+    <span class="detalle__label">Descripción</span>
+    <span class="detalle__valor">{{ evento.descripcion || '—' }}</span>
+  </div>
+  <div class="detalle__fila">
+    <span class="detalle__label">Fecha inicio</span>
+    <span class="detalle__valor">{{ evento.fechaInicio }}</span>
+  </div>
+  <div class="detalle__fila">
+    <span class="detalle__label">Duración</span>
+    <span class="detalle__valor">{{ evento.duracion }} min</span>
+  </div>
+  <div class="detalle__fila">
+    <span class="detalle__label">Dirección</span>
+    <span class="detalle__valor">{{ evento.direccion || '—' }}</span>
+  </div>
+  <div class="detalle__fila">
+    <span class="detalle__label">Aforo máximo</span>
+    <span class="detalle__valor">{{ evento.aforoMaximo }}</span>
+  </div>
+  <div class="detalle__fila">
+    <span class="detalle__label">Mínimo asistencia</span>
+    <span class="detalle__valor">{{ evento.minimoAsistencia || '—' }}</span>
+  </div>
+  <div class="detalle__fila">
+    <span class="detalle__label">Precio</span>
+    <span class="detalle__valor">{{ evento.precio }}€</span>
+  </div>
+  <div class="detalle__fila">
+    <span class="detalle__label">Estado</span>
+    <span class="detalle__valor">{{ evento.estado }}</span>
+  </div>
+  <div class="detalle__fila">
+    <span class="detalle__label">Destacado</span>
+    <span class="detalle__valor">{{ evento.destacado === 'S' ? 'Sí' : 'No' }}</span>
+  </div>
+</div>

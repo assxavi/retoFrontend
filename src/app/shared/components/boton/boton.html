@@ -1,0 +1,6 @@
+<button class="btn btn--{{ variante }}" [type]="tipo" (click)="click.emit()">
+  @if (icono) {
+    <i class="fas {{ icono }}"></i>
+  }
+  {{ texto }}
+</button>

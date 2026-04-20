@@ -9,6 +9,11 @@ export interface Evento {
   destacado: 'S' | 'N';
   aforoMaximo: number;
   minimoAsistencia: number;
-  precioVenta: number;
-  idTipo: number;
+  precio: number;
+  tipo?: {
+    idTipo: number;
+    nombre: string;
+    descripcion: string;
+  };
+  idTipo?: number;
 }

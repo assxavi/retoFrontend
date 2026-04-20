@@ -1,0 +1,90 @@
+<div class="tabla-wrapper">
+  <table class="table">
+    <thead>
+      <tr>
+        @for (col of columnas; track col.campo) {
+          <th>{{ col.label }}</th>
+        }
+        @if (tieneAcciones()) {
+          
+          <th>Opciones</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (fila of datosPagina; track fila.idEvento ?? fila.id) {
+        <tr>
+          @for (col of columnas; track col.campo) {
+            <td>{{ fila[col.campo] }}</td>
+          }
+          @if (tieneAcciones()) {
+            <td class="acciones">
+              @if (acciones.verDetalle) {
+                <button
+                  class="btn-accion btn-detalle"
+                  title="Ver detalle"
+                  (click)="verDetalle.emit(fila)"
+                >
+                  <i class="fas fa-magnifying-glass"></i>
+                </button>
+              }
+              @if (acciones.reservar) {
+                <button
+                  class="btn-accion btn-reservar"
+                  title="Reservar"
+                  (click)="reservar.emit(fila)"
+                >
+                  <i class="fas fa-ticket-alt"></i>
+                </button>
+              }
+              @if (acciones.editar) {
+                <button class="btn-accion btn-editar" title="Editar" (click)="editar.emit(fila)">
+                  <i class="fas fa-pen"></i>
+                </button>
+              }
+              @if (acciones.cancelar) {
+                <button
+                  class="btn-accion btn-cancelar"
+                  title="Cancelar"
+                  (click)="cancelar.emit(fila)"
+                >
+                  <i class="fas fa-xmark"></i>
+                </button>
+              }
+              @if (acciones.eliminar) {
+                <button
+                  class="btn-accion btn-eliminar"
+                  title="Eliminar"
+                  (click)="eliminar.emit(fila)"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              }
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  @if (paginas.length > 1) {
+    <div class="paginacion">
+      <button (click)="irAPagina(paginaActual - 1)" [disabled]="paginaActual === 0">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      @for (p of paginas; track p) {
+        <button [class.activa]="p === paginaActual" (click)="irAPagina(p)">
+          {{ p + 1 }}
+        </button>
+      }
+
+      <button
+        (click)="irAPagina(paginaActual + 1)"
+        [disabled]="paginaActual === paginas.length - 1"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  }
+</div>

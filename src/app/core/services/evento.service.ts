@@ -42,12 +42,12 @@ export class EventoService {
     return this.http.delete<void>(`${this.apiUrl}/eliminar/${id}`);
   }
 
-  // Endpoints específicos para vista de cliente
+  // Endpoints específicos para vista pública e invitado
   getCancelados(): Observable<Evento[]> {
-    return this.http.get<Evento[]>('http://localhost:8080/clientes/cancelados');
+    return this.http.get<Evento[]>(`${this.apiUrl}/cancelados`);
   }
 
   getTerminados(): Observable<Evento[]> {
-    return this.http.get<Evento[]>('http://localhost:8080/clientes/terminados');
+    return this.http.get<Evento[]>(`${this.apiUrl}/terminados`);
   }
 }

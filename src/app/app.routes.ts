@@ -21,53 +21,50 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/public/eventos/eventos').then((m) => m.EventosComponent),
   },
   {
+    path: 'eventos/listado',
+    loadComponent: () =>
+      import('./pages/cliente/eventos-cliente/eventos-cliente').then(
+        (m) => m.EventosClienteComponent,
+      ),
+  },
+  {
+    path: 'eventos/activos',
+    loadComponent: () =>
+      import('./pages/cliente/eventos-cliente/eventos-cliente').then(
+        (m) => m.EventosClienteComponent,
+      ),
+  },
+  {
+    path: 'eventos/cancelados',
+    loadComponent: () =>
+      import('./pages/cliente/eventos-cliente/eventos-cliente').then(
+        (m) => m.EventosClienteComponent,
+      ),
+  },
+  {
+    path: 'eventos/terminados',
+    loadComponent: () =>
+      import('./pages/cliente/eventos-cliente/eventos-cliente').then(
+        (m) => m.EventosClienteComponent,
+      ),
+  },
+  {
+    path: 'eventos/detalle/:id',
+    loadComponent: () =>
+      import('./pages/cliente/detalle-evento/detalle-evento').then((m) => m.DetalleEventoComponent),
+  },
+  {
     path: 'home',
     loadComponent: () => import('./pages/public/home/home').then((m) => m.HomeComponent),
   },
   {
     path: 'clientes',
-
     canActivate: [authGuard],
     children: [
       {
         path: 'misReservas',
         loadComponent: () =>
           import('./pages/cliente/mis-reservas/mis-reservas').then((m) => m.MisReservasComponent),
-      },
-      {
-        path: 'detalle/:id',
-        loadComponent: () =>
-          import('./pages/cliente/detalle-evento/detalle-evento').then(
-            (m) => m.DetalleEventoComponent,
-          ),
-      },
-      {
-        path: 'eventos',
-        loadComponent: () =>
-          import('./pages/cliente/eventos-cliente/eventos-cliente').then(
-            (m) => m.EventosClienteComponent,
-          ),
-      },
-      {
-        path: 'eventos/activos',
-        loadComponent: () =>
-          import('./pages/cliente/eventos-cliente/eventos-cliente').then(
-            (m) => m.EventosClienteComponent,
-          ),
-      },
-      {
-        path: 'eventos/cancelados',
-        loadComponent: () =>
-          import('./pages/cliente/eventos-cliente/eventos-cliente').then(
-            (m) => m.EventosClienteComponent,
-          ),
-      },
-      {
-        path: 'eventos/terminados',
-        loadComponent: () =>
-          import('./pages/cliente/eventos-cliente/eventos-cliente').then(
-            (m) => m.EventosClienteComponent,
-          ),
       },
     ],
   },

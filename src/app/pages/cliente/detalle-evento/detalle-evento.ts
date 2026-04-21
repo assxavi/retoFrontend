@@ -68,8 +68,18 @@ export class DetalleEventoComponent implements OnInit {
     }
   }
 
+	get isLoggedIn(): boolean {
+		return this.authService.isLoggedIn();
+	}
+
   reservarPlazas(): void {
     if (!this.evento) return;
+
+    if (!this.isLoggedIn) {
+      alert('Debes iniciar sesión para realizar una reserva.');
+      this.router.navigate(['/login']);
+      return;
+    }
 
     this.reservaService.reservar(this.evento.idEvento, this.cantidad).subscribe({
       next: () => {

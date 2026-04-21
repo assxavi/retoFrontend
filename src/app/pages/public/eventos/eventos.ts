@@ -22,7 +22,17 @@ export class EventosComponent implements OnInit {
   }
 
   cargarEventos(): void {
-    this.cargando = false;
-    this.eventos = [];
+    this.cargando = true;
+    this.eventoService.getActivos().subscribe({
+      next: (datos) => {
+        this.eventos = datos;
+        this.cargando = false;
+      },
+      error: (err) => {
+        console.error('Error al cargar eventos:', err);
+        this.error = 'No se han podido cargar los eventos.';
+        this.cargando = false;
+      }
+    });
   }
 }

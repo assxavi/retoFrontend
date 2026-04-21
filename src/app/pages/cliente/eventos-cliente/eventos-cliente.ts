@@ -5,6 +5,7 @@ import { BarraLateral } from '../../../shared/components/barra-lateral/barra_lat
 import { Tabla } from '../../../shared/components/tabla/tabla';
 import { EventoService } from '../../../core/services/evento.service';
 import { ReservaService } from '../../../core/services/reserva.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { Evento } from '../../../models/evento.model';
 
 @Component({
@@ -16,6 +17,7 @@ import { Evento } from '../../../models/evento.model';
 export class EventosClienteComponent implements OnInit {
   private eventoService = inject(EventoService);
   private reservaService = inject(ReservaService);
+  private authService = inject(AuthService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
 
@@ -60,10 +62,16 @@ export class EventosClienteComponent implements OnInit {
   }
 
   onVerDetalle(evento: any) {
-    this.router.navigate(['/clientes/detalle', evento.idEvento]);
+    this.router.navigate(['/eventos/detalle', evento.idEvento]);
   }
 
   onReservar(evento: any) {
+    if (!this.authService.isLoggedIn()) {
+      alert('Debes iniciar sesión para realizar una reserva.');
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.reservaService.reservar(evento.idEvento, 1).subscribe({
       next: () => {
         alert('¡Reserva realizada con éxito!');

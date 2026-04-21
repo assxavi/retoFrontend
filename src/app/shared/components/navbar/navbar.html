@@ -4,7 +4,7 @@
   </div>
 
   <div class="app-navbar__menu">
-    <a routerLink="/eventos" routerLinkActive="active">Eventos</a>
+    <a [routerLink]="authService.isLoggedIn() ? (isAdmin ? '/admin/eventos' : '/clientes/eventos') : '/eventos'" routerLinkActive="active">Eventos</a>
 
     <ng-container *ngIf="isAdmin">
       <a routerLink="/admin/eventos" routerLinkActive="active">Gestión</a>

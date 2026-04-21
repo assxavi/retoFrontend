@@ -1,7 +1,7 @@
 <section class="home">
   <div class="home-contenido">
     <div class="home-imagen">
-       <img src="../../../assets/images/evento.jpg" alt="Imagen de baile de salón" /> 
+       <img src="../../../../assets/images/hero-ballroom.png" alt="Imagen de baile de salón" /> 
     </div>
     <div class="home-texto">
         <h1>Los mejores eventos de <span>bailes de salón</span></h1>
@@ -16,7 +16,7 @@
     @for (evento of eventos; track evento.idEvento) {
       <div class="evento-card">
         <img
-          src="../../../assets/images/evento.jpg"
+          src="../../../../assets/images/hero-ballroom.png"
           [alt]="evento.nombre"
           class="evento-imagen"
         />
@@ -41,7 +41,7 @@
           <p>{{ evento.descripcion }}</p>
         </div>
         <div class="evento-img">
-          <img src="../../../assets/images/evento.jpg" [alt]="evento.nombre" />
+          <img src="../../../../assets/images/hero-ballroom.png" [alt]="evento.nombre" />
         </div>
       </div>
     }

@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { FooterComponent } from '../../../shared/components/footer/footer';
 import { Evento } from '../../../models/evento.model';
 import { EventoService } from '../../../core/services/evento.service';
-import { DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [FooterComponent, DatePipe, RouterLink],
+  imports: [FooterComponent, CommonModule, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -22,7 +22,16 @@ export class HomeComponent {
   }
 
   cargarEventos(): void {
-    this.cargando = false;
-    this.eventos = [];
+    this.cargando = true;
+    this.eventoService.getActivos().subscribe({
+      next: (datos) => {
+        this.eventos = datos;
+        this.cargando = false;
+      },
+      error: (err) => {
+        console.error('Error al cargar eventos en Home:', err);
+        this.cargando = false;
+      }
+    });
   }
 }

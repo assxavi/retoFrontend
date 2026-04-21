@@ -82,11 +82,11 @@
 
   button {
     background: transparent;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--color-red);
+    color: var(--color-red);
 
     &:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(122, 22, 40, 0.1);
     }
   }
 }

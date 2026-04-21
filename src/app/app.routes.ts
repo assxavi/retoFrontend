@@ -27,8 +27,7 @@ export const routes: Routes = [
   {
     path: 'clientes',
 
-    // TODO: descomentar cuando el backend esté listo
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: 'misReservas',
@@ -41,21 +40,71 @@ export const routes: Routes = [
           import('./pages/cliente/detalle-evento/detalle-evento').then(
             (m) => m.DetalleEventoComponent,
           ),
-      },{
+      },
+      {
         path: 'eventos',
         loadComponent: () =>
           import('./pages/cliente/eventos-cliente/eventos-cliente').then(
             (m) => m.EventosClienteComponent,
           ),
-      }
+      },
+      {
+        path: 'eventos/activos',
+        loadComponent: () =>
+          import('./pages/cliente/eventos-cliente/eventos-cliente').then(
+            (m) => m.EventosClienteComponent,
+          ),
+      },
+      {
+        path: 'eventos/cancelados',
+        loadComponent: () =>
+          import('./pages/cliente/eventos-cliente/eventos-cliente').then(
+            (m) => m.EventosClienteComponent,
+          ),
+      },
+      {
+        path: 'eventos/terminados',
+        loadComponent: () =>
+          import('./pages/cliente/eventos-cliente/eventos-cliente').then(
+            (m) => m.EventosClienteComponent,
+          ),
+      },
     ],
   },
   {
     path: 'admin',
-    // canActivate: [adminGuard],
+    canActivate: [adminGuard],
     children: [
       {
         path: 'eventos',
+        loadComponent: () =>
+          import('./pages/admin/gestion-eventos/gestion-eventos').then(
+            (m) => m.GestionEventosComponent,
+          ),
+      },
+      {
+        path: 'eventos/activos',
+        loadComponent: () =>
+          import('./pages/admin/gestion-eventos/gestion-eventos').then(
+            (m) => m.GestionEventosComponent,
+          ),
+      },
+      {
+        path: 'eventos/cancelados',
+        loadComponent: () =>
+          import('./pages/admin/gestion-eventos/gestion-eventos').then(
+            (m) => m.GestionEventosComponent,
+          ),
+      },
+      {
+        path: 'eventos/terminados',
+        loadComponent: () =>
+          import('./pages/admin/gestion-eventos/gestion-eventos').then(
+            (m) => m.GestionEventosComponent,
+          ),
+      },
+      {
+        path: 'eventos/desactivados',
         loadComponent: () =>
           import('./pages/admin/gestion-eventos/gestion-eventos').then(
             (m) => m.GestionEventosComponent,

@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class TipoService {
   private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/eventos`;
+  private apiUrl = `${environment.apiUrl}/tipos`;
 
   findAll(): Observable<Tipo[]> {
     return this.http.get<Tipo[]>(`${this.apiUrl}/listado`);

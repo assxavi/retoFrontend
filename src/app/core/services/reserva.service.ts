@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ReservaService {
 
-  private apiUrl = `${environment.apiUrl}/eventos`;
+  private apiUrl = `${environment.apiUrl}/reservas`;
 
   constructor(private http: HttpClient) {}
 

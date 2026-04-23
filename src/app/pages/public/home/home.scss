@@ -302,3 +302,22 @@ img {
     gap: 1.5rem;
   }
 }
+
+@media (max-width: 900px) {
+  .home-contenido {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .home-imagen {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

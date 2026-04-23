@@ -92,5 +92,29 @@ export class DetalleEventoComponent implements OnInit {
       }
     });
   }
+
+  getImagenTipo(evento: Evento): string {
+  const nombre = evento.tipo?.nombre;
+  if (!nombre) return 'assets/img/tipos/vals-lento.jpg';
+
+  const mapa: { [key: string]: string } = {
+    'Vals Lento':  'vals-lento',
+    'Tango':       'tango',
+    'Foxtrot':     'foxtrot',
+    'Quickstep':   'quickstep',
+    'Vals Vienés': 'vals-vienes',
+    'Cha-cha-chá': 'cha-cha-cha',
+    'Rumba':       'rumba',
+    'Samba':       'samba',
+    'Pasodoble':   'pasodoble',
+    'Jive':        'jive',
+    'Salsa':       'salsa',
+    'Bachata':     'bachata',
+    'Merengue':    'merengue',
+  };
+
+  const archivo = mapa[nombre] ?? 'vals-lento';
+  return `assets/img/tipos/${archivo}.jpg`;
+}
 }
 

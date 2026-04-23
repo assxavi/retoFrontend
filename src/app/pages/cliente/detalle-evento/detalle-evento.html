@@ -1,5 +1,9 @@
 <div class="container-img">
-    <img src="../../../../../assets/img/tango.jpg" alt="Imagen del evento" class="detalle-imagen">
+  <img 
+    [src]="evento ? getImagenTipo(evento) : 'assets/img/tipos/vals-lento.jpg'" 
+    alt="Imagen del evento" 
+    class="detalle-imagen"
+  >
 </div>
 
 @if (evento) {

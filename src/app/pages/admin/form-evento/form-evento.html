@@ -69,15 +69,18 @@
     </div>
   </div>
 
-  <div class="campo">
-    <label>Tipo *</label>
-    <select [formControl]="form.controls.idTipo">
-      <option value="1">Conciertos</option>
-      <option value="2">Cine</option>
-      <option value="3">Competición</option>
-      <option value="4">Noches Temáticas</option>
-    </select>
-  </div>
+<div class="campo">
+  <label>Tipo *</label>
+  <select [formControl]="form.controls.idTipo">
+    <option value="">-- Selecciona un tipo --</option>
+    @for (tipo of tipos; track tipo.idTipo) {
+      <option [value]="tipo.idTipo">{{ tipo.nombre }}</option>
+    }
+  </select>
+  @if (form.controls.idTipo.invalid && form.controls.idTipo.touched) {
+    <span class="error">El tipo es obligatorio</span>
+  }
+</div>
 
   <div class="acciones">
     <app-boton texto="Cancelar" variante="secundario" (click)="cancelar.emit()" />

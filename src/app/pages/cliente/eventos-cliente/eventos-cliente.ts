@@ -1,31 +1,83 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BarraLateral } from '../../../shared/components/barra-lateral/barra_lateral';
 import { Tabla } from '../../../shared/components/tabla/tabla';
+import { EventoService } from '../../../core/services/evento.service';
+import { ReservaService } from '../../../core/services/reserva.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { Evento } from '../../../models/evento.model';
 
 @Component({
-  selector: 'app-gestion-eventos',
-  imports: [BarraLateral, Tabla],
+  selector: 'app-eventos-cliente',
+  imports: [CommonModule, BarraLateral, Tabla],
   templateUrl: './eventos-cliente.html',
   styleUrl: './eventos-cliente.scss',
 })
-export class EventosClienteComponent {
+export class EventosClienteComponent implements OnInit {
+  private eventoService = inject(EventoService);
+  private reservaService = inject(ReservaService);
+  private authService = inject(AuthService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
-    eventos = [
-    { id: 1, nombre: 'Salsa en la Plaza', fecha: '15/06/2025', aforo: 120, precio: '25€' },
-    { id: 2, nombre: 'Tango Noche de Verano', fecha: '22/06/2025', aforo: 80, precio: '35€' },
-    { id: 3, nombre: 'Bachata Sunset', fecha: '29/06/2025', aforo: 100, precio: '20€' },
-    { id: 4, nombre: 'Vals Clásico', fecha: '05/07/2025', aforo: 60, precio: '40€' },
-    { id: 5, nombre: 'Cumbia en la Costa', fecha: '12/07/2025', aforo: 150, precio: '15€' },
-  ];
+  eventos: Evento[] = [];
+  eventosFiltrados: Evento[] = [];
+
+  ngOnInit(): void {
+    // Escuchamos cambios en la ruta para filtrar
+    this.route.url.subscribe(() => {
+      this.cargarEventos();
+    });
+  }
+
+  cargarEventos() {
+    const urlSegments = this.router.url.split('/');
+    const status = urlSegments[urlSegments.length - 1];
+
+    let request;
+    if (status === 'cancelados') {
+      request = this.eventoService.getCancelados();
+    } else if (status === 'terminados') {
+      request = this.eventoService.getTerminados();
+    } else {
+      request = this.eventoService.getActivos();
+    }
+
+    request.subscribe({
+      next: (datos) => {
+        this.eventos = datos;
+        this.eventosFiltrados = datos; // Ya vienen filtrados del backend por el endpoint
+      },
+      error: (err) => console.error('Error al cargar eventos:', err),
+    });
+  }
+
+  filtrarEventos() {
+    // Ya no es necesario filtrar de forma manual si llamamos al endpoint específico
+  }
 
   onCancelar(evento: any) {
     console.log('Cancelar:', evento);
   }
+
   onVerDetalle(evento: any) {
-    console.log('Ver detalle:', evento);
+    this.router.navigate(['/eventos/detalle', evento.idEvento]);
   }
 
   onReservar(evento: any) {
-    console.log('Reservar:', evento);
+    if (!this.authService.isLoggedIn()) {
+      alert('Debes iniciar sesión para realizar una reserva.');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    this.reservaService.reservar(evento.idEvento, 1).subscribe({
+      next: () => {
+        alert('¡Reserva realizada con éxito!');
+        this.router.navigate(['/clientes/misReservas']);
+      },
+      error: (err) => console.error('Error al reservar:', err),
+    });
   }
 }

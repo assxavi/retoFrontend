@@ -3,6 +3,8 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Boton } from '../../../shared/components/boton/boton';
 import { Evento } from '../../../models/evento.model';
+import { TipoService } from '../../../core/services/tipo.service';
+import { Tipo } from '../../../models/tipo.model';
 
 @Component({
   selector: 'app-form-evento',
@@ -15,6 +17,14 @@ export class FormEventoComponent {
   @Output() cancelar = new EventEmitter<void>();
 
   private fb = inject(FormBuilder);
+  private tipoService = inject(TipoService);
+  tipos: Tipo[] = [];
+
+  constructor() {
+    this.tipoService.findAll().subscribe((data) => {
+      this.tipos = data;
+    });
+  }
 
   form = this.fb.group({
     nombre: ['', [Validators.required, Validators.maxLength(50)]],

@@ -16,8 +16,8 @@ export class ReservaService {
     return this.http.get<Reserva[]>(`${this.apiUrl}/misReservas`);
   }
 
-  reservar(id: number, cantidad: number): Observable<Reserva> {
-    return this.http.post<Reserva>(`${this.apiUrl}/reservar/${id}`, { cantidad });
+  reservar(id: number, cantidad: number): Observable<string> {
+    return this.http.post(`${this.apiUrl}/reservar/${id}?cantidad=${cantidad}`, {}, { responseType: 'text' });
   }
 
   cancelar(id: number): Observable<void> {

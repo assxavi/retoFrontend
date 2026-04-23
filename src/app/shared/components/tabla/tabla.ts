@@ -60,4 +60,8 @@ export class Tabla {
   tieneAcciones(): boolean {
     return Object.values(this.acciones).some((v) => v === true);
   }
+
+  getValor(fila: any, campo: string): any {
+    return campo.split('.').reduce((obj, key) => (obj ? obj[key] : undefined), fila);
+  }
 }

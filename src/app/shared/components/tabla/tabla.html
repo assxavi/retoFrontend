@@ -15,7 +15,7 @@
       @for (fila of datosPagina; track fila.idEvento ?? fila.id) {
         <tr>
           @for (col of columnas; track col.campo) {
-            <td>{{ fila[col.campo] }}</td>
+            <td>{{ getValor(fila, col.campo) }}</td>
           }
           @if (tieneAcciones()) {
             <td class="acciones">

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { BarraLateral } from '../../../shared/components/barra-lateral/barra_lateral';
 import { Tabla } from '../../../shared/components/tabla/tabla';
 import { Boton } from '../../../shared/components/boton/boton';
@@ -8,6 +8,7 @@ import { EventoService } from '../../../core/services/evento.service';
 import { Evento } from '../../../models/evento.model';
 import { DetalleEventoComponent } from '../../cliente/detalle-evento/detalle-evento';
 import { DetalleEventoAdminComponent } from '../detalle-evento/detalle-evento-admin';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-gestion-eventos',
@@ -17,22 +18,52 @@ import { DetalleEventoAdminComponent } from '../detalle-evento/detalle-evento-ad
 })
 export class GestionEventosComponent {
   private eventoService = inject(EventoService);
+  private route = inject(ActivatedRoute);
   modalVisible = false;
   eventoSeleccionado: Evento | null = null;
   eventoDetalle: Evento | null = null;
   modalDetalleVisible = false;
 
   eventos: Evento[] = [];
+  eventosFiltrados: Evento[] = [];
+
   ngOnInit(): void {
-    console.log(this.cargarListado());
-    this.cargarListado();
+    this.route.url.subscribe(() => {
+      this.cargarListado();
+    });
   }
 
   cargarListado(): void {
     this.eventoService.getListado().subscribe({
-      next: (datos) => (this.eventos = datos),
+      next: (datos) => {
+        this.eventos = datos;
+        this.filtrarEventos();
+      },
       error: (err) => console.error('Error al cargar eventos:', err),
     });
+  }
+
+  private filtrarEventos(): void {
+    const path = this.route.snapshot.url[this.route.snapshot.url.length - 1]?.path;
+    
+    if (!path || path === 'eventos') {
+      this.eventosFiltrados = this.eventos;
+      return;
+    }
+
+    const estadoMapa: { [key: string]: string } = {
+      'activos': 'ACTIVO',
+      'cancelados': 'CANCELADO',
+      'terminados': 'TERMINADO',
+      'desactivados': 'DESACTIVADO'
+    };
+
+    const estadoBuscado = estadoMapa[path];
+    if (estadoBuscado) {
+      this.eventosFiltrados = this.eventos.filter(e => e.estado === estadoBuscado);
+    } else {
+      this.eventosFiltrados = this.eventos;
+    }
   }
 
   onVerDetalle(evento: Evento): void {
@@ -51,7 +82,16 @@ export class GestionEventosComponent {
     });
   }
   onEliminar(evento: any) {
-    console.log('Eliminar:', evento);
+    if (confirm(`¿Estás seguro de que deseas eliminar el evento "${evento.nombre}"?`)) {
+      this.eventoService.eliminar(evento.idEvento).subscribe({
+        next: () => {
+          // Eliminamos el evento de la lista local de forma instantánea
+          this.eventos = this.eventos.filter((e) => e.idEvento !== evento.idEvento);
+          this.filtrarEventos();
+        },
+        error: (err) => console.error('Error al eliminar evento:', err),
+      });
+    }
   }
 
   onGuardarEvento(datos: any): void {

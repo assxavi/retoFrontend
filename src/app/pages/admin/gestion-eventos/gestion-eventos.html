@@ -21,7 +21,7 @@
       { campo: 'precio', label: 'Precio' },
       { campo: 'estado', label: 'Estado' },
     ]"
-    [datos]="eventos"
+    [datos]="eventosFiltrados"
     [acciones]="{ verDetalle: true, editar: true, cancelar: true, eliminar: true }"
     (verDetalle)="onVerDetalle($event)"
     (editar)="onEditar($event)"

@@ -23,7 +23,7 @@ export class EventoService {
   }
 
   getDetalle(id: number): Observable<Evento> {
-    return this.http.get<Evento>(`${this.apiUrl}/${id}`);
+    return this.http.get<Evento>(`${this.apiUrl}/detalle/${id}`);
   }
 
   crear(evento: Evento): Observable<Evento> {
@@ -36,5 +36,18 @@ export class EventoService {
 
   cancelar(id: number): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/cancelar/${id}`, {});
+  }
+
+  eliminar(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/eliminar/${id}`);
+  }
+
+  // Endpoints específicos para vista pública e invitado
+  getCancelados(): Observable<Evento[]> {
+    return this.http.get<Evento[]>(`${this.apiUrl}/cancelados`);
+  }
+
+  getTerminados(): Observable<Evento[]> {
+    return this.http.get<Evento[]>(`${this.apiUrl}/terminados`);
   }
 }

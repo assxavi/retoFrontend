@@ -21,41 +21,87 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/public/eventos/eventos').then((m) => m.EventosComponent),
   },
   {
+    path: 'eventos/listado',
+    loadComponent: () =>
+      import('./pages/cliente/eventos-cliente/eventos-cliente').then(
+        (m) => m.EventosClienteComponent,
+      ),
+  },
+  {
+    path: 'eventos/activos',
+    loadComponent: () =>
+      import('./pages/cliente/eventos-cliente/eventos-cliente').then(
+        (m) => m.EventosClienteComponent,
+      ),
+  },
+  {
+    path: 'eventos/cancelados',
+    loadComponent: () =>
+      import('./pages/cliente/eventos-cliente/eventos-cliente').then(
+        (m) => m.EventosClienteComponent,
+      ),
+  },
+  {
+    path: 'eventos/terminados',
+    loadComponent: () =>
+      import('./pages/cliente/eventos-cliente/eventos-cliente').then(
+        (m) => m.EventosClienteComponent,
+      ),
+  },
+  {
+    path: 'eventos/detalle/:id',
+    loadComponent: () =>
+      import('./pages/cliente/detalle-evento/detalle-evento').then((m) => m.DetalleEventoComponent),
+  },
+  {
     path: 'home',
     loadComponent: () => import('./pages/public/home/home').then((m) => m.HomeComponent),
   },
   {
     path: 'clientes',
-
-    // TODO: descomentar cuando el backend esté listo
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: 'misReservas',
         loadComponent: () =>
           import('./pages/cliente/mis-reservas/mis-reservas').then((m) => m.MisReservasComponent),
       },
-      {
-        path: 'detalle/:id',
-        loadComponent: () =>
-          import('./pages/cliente/detalle-evento/detalle-evento').then(
-            (m) => m.DetalleEventoComponent,
-          ),
-      },{
-        path: 'eventos',
-        loadComponent: () =>
-          import('./pages/cliente/eventos-cliente/eventos-cliente').then(
-            (m) => m.EventosClienteComponent,
-          ),
-      }
     ],
   },
   {
     path: 'admin',
-    // canActivate: [adminGuard],
+    canActivate: [adminGuard],
     children: [
       {
         path: 'eventos',
+        loadComponent: () =>
+          import('./pages/admin/gestion-eventos/gestion-eventos').then(
+            (m) => m.GestionEventosComponent,
+          ),
+      },
+      {
+        path: 'eventos/activos',
+        loadComponent: () =>
+          import('./pages/admin/gestion-eventos/gestion-eventos').then(
+            (m) => m.GestionEventosComponent,
+          ),
+      },
+      {
+        path: 'eventos/cancelados',
+        loadComponent: () =>
+          import('./pages/admin/gestion-eventos/gestion-eventos').then(
+            (m) => m.GestionEventosComponent,
+          ),
+      },
+      {
+        path: 'eventos/terminados',
+        loadComponent: () =>
+          import('./pages/admin/gestion-eventos/gestion-eventos').then(
+            (m) => m.GestionEventosComponent,
+          ),
+      },
+      {
+        path: 'eventos/desactivados',
         loadComponent: () =>
           import('./pages/admin/gestion-eventos/gestion-eventos').then(
             (m) => m.GestionEventosComponent,

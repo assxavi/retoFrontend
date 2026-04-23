@@ -43,4 +43,12 @@ export class AuthService {
     console.log('Enviando datos de registro:', datos);
     return this.http.post(`${this.apiUrl}/usuarios/alta`, datos);
   }
+
+  getUsuarioInfo(username: string): Observable<any> {
+    const credentials = this.getCredentials();
+    const headers = new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+    });
+    return this.http.get(`${this.apiUrl}/usuarios/detalle/${username}`, { headers });
+  }
 }

@@ -1,1 +1,22 @@
-<p>mis-reservas works!</p>
+<app-barra-lateral
+  title="Mis Reservas"
+  [links]="[
+    { label: 'Todas mis reservas', route: '/clientes/misReservas', icon: 'fa-calendar-check' }
+  ]"
+></app-barra-lateral>
+
+<div class="reservas-content">
+  <app-tabla
+    [columnas]="[
+      { campo: 'nombreEvento', label: 'Evento' },
+      { campo: 'fechaEvento', label: 'Fecha' },
+      { campo: 'cantidad', label: 'Unidades' },
+      { campo: 'precioVenta', label: 'Total Pagado' }
+    ]"
+    [datos]="reservas"
+    [acciones]="{ cancelar: true }"
+    [tamanoPagina]="5"
+    (cancelar)="onCancelarReserva($event)"
+  >
+  </app-tabla>
+</div>

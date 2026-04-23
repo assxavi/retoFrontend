@@ -5,18 +5,12 @@
   color: #2f2f2f;
 }
 
-$granate: #7a1628;
-$granate-oscuro: #5f1020;
-$fondo: #f8f5f5;
-$texto: #4d4d4d;
-$linea: rgba(122, 22, 40, 0.35);
-$gris-claro: #e9e2e2;
-$blanco: #ffffff;
+
 
 section {
   padding: 3rem 2.5rem;
 
-  background-color: $fondo;
+  background-color: var(--color-bg);
 }
 
 h1,
@@ -36,8 +30,8 @@ img {
 .btn-detalle {
   display: inline-block;
   text-decoration: none;
-  background-color: $granate;
-  color: $blanco;
+  background-color: var(--color-red);
+  color: var(--color-white);
   padding: 0.75rem 1.4rem;
   font-size: 0.82rem;
   font-weight: 700;
@@ -48,7 +42,7 @@ img {
 
 .btn:hover,
 .btn-detalle:hover {
-  background-color: $granate-oscuro;
+  background-color: var(--color-accent-dark);
 }
 
 /* HOME */
@@ -77,7 +71,7 @@ img {
 
 .home-contenido h1 {
   font-size: 2.3rem;
-  color: $granate;
+  color: var(--color-red);
   line-height: 1.2;
   margin-bottom: 1rem;
 }
@@ -88,7 +82,7 @@ img {
 }
 
 .home-contenido p {
-  color: $texto;
+  color: var(--color-primary);
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -116,13 +110,13 @@ img {
 .evento-imagen {
   height: 130px;
   object-fit: cover;
-  background-color: $gris-claro;
+  background-color: var(--color-primary);
   margin-bottom: 0.9rem;
 }
 
 .evento-card h3 {
   font-size: 0.78rem;
-  color: $granate;
+  color: var(--color-red);
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -130,7 +124,7 @@ img {
 /* PROXIMOS EVENTOS */
 .proximos-eventos h2 {
   font-size: 1.5rem;
-  color: $granate;
+  color: var(--color-red);
   margin-bottom: 2rem;
   margin-left: 2rem;
 }
@@ -153,7 +147,7 @@ img {
 
 .evento-fecha {
   text-align: center;
-  color: $granate;
+  color: var(--color-red);
   position: relative;
 }
 
@@ -164,7 +158,7 @@ img {
   right: -0.75rem;
   width: 2px;
   height: 250%;
-  background-color: $linea;
+  background-color: var(--color-accent);
 }
 
 .evento-fecha p:first-child {
@@ -185,14 +179,14 @@ img {
 }
 .evento-info h3 {
   font-size: 0.95rem;
-  color: $granate;
+  color: var(--color-red);
   margin-bottom: 0.45rem;
 }
 
 .evento-info p {
   font-size: 0.88rem;
   line-height: 1.5;
-  color: $texto;
+  color: var(--color-primary);
   margin-bottom: 0.8rem;
 }
 
@@ -204,7 +198,7 @@ img {
 .evento-img img {
   height: 110px;
   object-fit: cover;
-  background-color: $gris-claro;
+  background-color: var(--color-primary);
 }
 
 /* RESERVA */
@@ -214,12 +208,12 @@ img {
 
 .reserva h2 {
   font-size: 1.8rem;
-  color: $granate;
+  color: var(--color-red);
   margin-bottom: 0.7rem;
 }
 
 .reserva > p {
-  color: $texto;
+  color: var(--color-primary);
   margin-bottom: 2rem;
 }
 
@@ -240,12 +234,12 @@ img {
 
 .paso i {
   font-size: 1.4rem;
-  color: $granate;
+  color: var(--color-red);
   margin-bottom: 0.6rem;
 }
 
 .paso p {
-  color: $granate;
+  color: var(--color-red);
   font-size: 0.9rem;
   font-weight: 600;
 }

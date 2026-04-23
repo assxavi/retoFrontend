@@ -8,6 +8,7 @@
   color: var(--color-red);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-bottom: 5px solid var(--color-red);
+  position: relative;  
 
   img {
     width: 80px;
@@ -23,6 +24,9 @@
 }
 
 .app-navbar__menu {
+  position: absolute;   
+  left: 50%;           
+  transform: translateX(-50%); 
   display: flex;
   gap: 1.5rem;
 
@@ -42,7 +46,6 @@
     }
   }
 }
-
 .app-navbar__user {
   display: flex;
   align-items: center;

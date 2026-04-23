@@ -4,31 +4,32 @@
   </div>
 
   <div class="app-navbar__menu">
-    <a [routerLink]="authService.isLoggedIn() ? (isAdmin ? '/admin/eventos' : '/eventos/activos') : '/eventos/activos'" routerLinkActive="active">Eventos</a>
+    <!-- Sin login o cliente: va a /eventos -->
+    @if (!authService.isLoggedIn() || (!isAdmin)) {
+      <a [routerLink]="isAdmin ? '/admin/eventos' : (authService.isLoggedIn() ? '/clientes/eventos' : '/eventos')" 
+         routerLinkActive="active">
+        Eventos
+      </a>
+    }
 
-    <ng-container *ngIf="isAdmin">
+    <!-- Admin: gestión -->
+    @if (isAdmin) {
       <a routerLink="/admin/eventos" routerLinkActive="active">Gestión</a>
-    </ng-container>
+    }
 
-    <ng-container *ngIf="authService.isLoggedIn() && !isAdmin">
-      <a routerLink="/clientes/misReservas" routerLinkActive="active">Mis Reservas</a>
-    </ng-container>
+    <!-- Cliente logueado: mis reservas -->
+    @if (authService.isLoggedIn() && !isAdmin) {
+      <a routerLink="/clientes/mis-reservas" routerLinkActive="active">Mis Reservas</a>
+    }
   </div>
 
   <div class="app-navbar__user">
     @if (authService.isLoggedIn()) {
       <span>{{ username }}</span>
-    }
-
-    @if (!authService.isLoggedIn()) {
-      <ng-container>
-        <a routerLink="/login" class="btn-login">Iniciar Sesión</a>
-        <a routerLink="/registro" class="btn-registro">Registro</a>
-      </ng-container>
+      <button (click)="logout()">Cerrar Sesión</button>
     } @else {
-      <ng-container>
-        <button (click)="logout()">Cerrar Sesión</button>
-      </ng-container>
+      <a routerLink="/login" class="btn-login">Iniciar Sesión</a>
+      <a routerLink="/registro" class="btn-registro">Registro</a>
     }
   </div>
 </nav>

@@ -26,10 +26,6 @@ export const routes: Routes = [
       import('./pages/cliente/detalle-evento/detalle-evento').then((m) => m.DetalleEventoComponent),
   },
   {
-    path: 'home',
-    loadComponent: () => import('./pages/public/home/home').then((m) => m.HomeComponent),
-  },
-  {
     path: 'clientes',
     canActivate: [authGuard],
     children: [
@@ -39,12 +35,19 @@ export const routes: Routes = [
           import('./pages/cliente/mis-reservas/mis-reservas').then((m) => m.MisReservasComponent),
       },
       {
-        path:'eventos',
+        path: 'eventos',
         loadComponent: () =>
           import('./pages/cliente/eventos-cliente/eventos-cliente').then(
             (m) => m.EventosClienteComponent,
           ),
-      },  
+      },
+      {
+        path: 'eventos/detalle/:id',
+        loadComponent: () =>
+          import('./pages/cliente/detalle-evento/detalle-evento').then(
+            (m) => m.DetalleEventoComponent,
+          ),
+      },
       {
         path: 'eventos/activos',
         loadComponent: () =>

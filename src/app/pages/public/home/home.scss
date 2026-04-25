@@ -65,8 +65,18 @@ img {
 }
 
 .home-imagen {
-  width: 100%;
+  width: 50%;
+  height: 400px;
+  overflow: hidden;
   border: #4d4d4d 1px solid;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
 }
 
 .home-contenido h1 {

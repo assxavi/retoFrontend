@@ -1,0 +1,58 @@
+<div class="container-img">
+  <img 
+    [src]="evento ? getImagenTipo(evento) : 'assets/img/tipos/vals-lento.jpg'" 
+    alt="Imagen del evento" 
+    class="detalle-imagen"
+  >
+</div>
+
+@if (evento) {
+  <div class="container mt-3">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-center gap-3">
+        <h2>{{ evento.nombre }}</h2>
+        <span class="precio fw-bold fs-4">{{ evento.precio }}€</span>
+      </div>
+
+      <div class="d-flex flex-column align-items-end gap-1">
+        @if (evento.destacado === 'S') {
+          <span class="border border-warning text-warning badge">DESTACADO</span>
+        }
+        @switch (evento.estado) {
+          @case ('ACTIVO') {
+            <span class="border border-success text-success badge">ACTIVO</span>
+          }
+
+          @case ('CANCELADO') {
+            <span class="border border-danger text-danger">CANCELADO</span>
+          }
+          @case ('TERMINADO') {
+            <span class="border border-success text-success">TERMINADO</span>
+          }
+        }
+      </div>
+    </div>
+
+    <p class="text-muted small">{{ evento.direccion }}</p>
+    <p class="text-muted small">{{ evento.fechaInicio | date: 'dd/MM/yyyy' }}</p>
+    <p class="mt-3">{{ evento.descripcion }}</p>
+
+    <p>
+      Plazas libres: <span class="text-success fw-bold">{{ plazasLibres }}</span>
+    </p>
+
+      <div class="d-flex justify-content-end align-items-center gap-2 mt-3">
+        <div class="d-flex flex-column align-items-center">
+          <small class="text-muted mb-1">ENTRADAS (MÁX. 10)</small>
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-outline-secondary" (click)="restarPlazas()">-</button>
+            <input type="text" class="form-control text-center" style="width: 50px" [value]="cantidad" disabled>
+            <button class="btn btn-outline-secondary" (click)="sumarPlazas()">+</button>
+          </div>
+        </div>
+        <button class="btn btn-reservar px-4 align-self-end" (click)="reservarPlazas()">RESERVAR</button>
+      </div>
+  </div>
+} @else {
+  <p>Cargando...</p>
+}

@@ -1,0 +1,50 @@
+<div class="registro-container">
+  <div class="registro-card">
+
+    <h2>Bailes de Salón</h2>
+    <h3>Crear cuenta</h3>
+
+    <div class="exito" *ngIf="exito">{{ exito }}</div>
+    <div class="error" *ngIf="error">{{ error }}</div>
+
+    <div class="form-group">
+      <label>Usuario</label>
+      <input type="text" [(ngModel)]="usuario.username" placeholder="Mínimo 4 caracteres"/>
+    </div>
+
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" [(ngModel)]="usuario.nombre" placeholder="Tu nombre"/>
+    </div>
+
+    <div class="form-group">
+      <label>Apellidos</label>
+      <input type="text" [(ngModel)]="usuario.apellidos" placeholder="Tus apellidos"/>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="usuario.email" placeholder="tu@email.com"/>
+    </div>
+
+    <div class="form-group">
+      <label>Dirección</label>
+      <input type="text" [(ngModel)]="usuario.direccion" placeholder="Tu dirección"/>
+    </div>
+
+    <div class="form-group">
+      <label>Contraseña</label>
+      <input type="password" [(ngModel)]="usuario.password" placeholder="Tu contraseña"/>
+    </div>
+
+    <div class="form-group">
+      <label>Confirmar contraseña</label>
+      <input type="password" [(ngModel)]="usuario.confirmPassword" placeholder="Repite la contraseña"/>
+    </div>
+
+    <button (click)="registrar()">Crear cuenta</button>
+
+    <p>¿Ya tienes cuenta? <a routerLink="/login">Iniciar Sesión</a></p>
+
+  </div>
+</div>

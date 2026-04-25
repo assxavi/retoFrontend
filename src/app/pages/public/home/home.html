@@ -1,0 +1,70 @@
+<section class="home">
+  <div class="home-contenido">
+    <div class="home-imagen">
+      <img src="../../../../assets/img/inicio.jpg" alt="Imagen de baile de salón" />
+    </div>
+    <div class="home-texto">
+      <h1>Los mejores eventos de <span>bailes de salón</span></h1>
+      <p>Clases y competiciones.</p>
+      <p>Reserva tu plaza.</p>
+      <a [routerLink]="['/eventos']" class="btn">Ver eventos</a>
+    </div>
+  </div>
+
+  <div class="home-eventos">
+    @for (evento of eventos; track evento.idEvento) {
+      <div class="evento-card">
+        <img [src]="getImagenTipo(evento)" [alt]="evento.nombre" class="evento-imagen" />
+        <h3>{{ evento.nombre }}</h3>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="proximos-eventos">
+  <h2>Próximos eventos</h2>
+
+  <div class="eventos-lista">
+    @for (evento of eventos; track evento.idEvento) {
+      <div class="evento-list">
+        <div class="evento-fecha">
+          <p>{{ evento.fechaInicio | date: 'dd' }}</p>
+          <p>{{ evento.fechaInicio | date: 'MMMM' }}</p>
+        </div>
+        <div class="evento-info">
+          <h3>{{ evento.nombre }}</h3>
+          <p>{{ evento.descripcion }}</p>
+        </div>
+        <div class="evento-img">
+          <img [src]="getImagenTipo(evento)" [alt]="evento.nombre" />
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="reserva">
+  <h2>¿Quieres reservar?</h2>
+  <p>Crea tu cuenta gratis y reserva en segundos</p>
+
+  <div class="reserva-pasos">
+    <div class="paso">
+      <i class="fa fa-user-plus"></i>
+      <p>Regístrate</p>
+    </div>
+
+    <div class="paso">
+      <i class="fa fa-sign-in-alt"></i>
+      <p>Reserva</p>
+    </div>
+
+    <div class="paso">
+      <i class="fa fa-calendar-alt"></i>
+      <p>Disfruta</p>
+    </div>
+  </div>
+
+  <a [routerLink]="['/registro']" class="btn">Regístrate</a>
+</section>
+
+<app-footer></app-footer>

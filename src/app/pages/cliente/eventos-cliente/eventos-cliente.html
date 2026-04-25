@@ -1,0 +1,21 @@
+<app-barra-lateral
+  title="Eventos"
+  [links]="[
+    { label: 'Activos', route: '/clientes/eventos/activos', icon: 'fa-circle-check' },
+    { label: 'Cancelados', route: '/clientes/eventos/cancelados', icon: 'fa-ban' },
+    { label: 'Terminados', route: '/clientes/eventos/terminados', icon: 'fa-flag' },
+  ]">
+</app-barra-lateral>
+<app-tabla
+[columnas]="[
+{campo: 'nombre', label: 'Nombre'},
+{campo: 'fechaInicio', label: 'Fecha'},
+{campo: 'precio', label: 'Precio'}
+]"
+[datos]="eventosFiltrados"
+[acciones]="{verDetalle: true, cancelar: true, reservar: true}"
+[tamanoPagina]="5"
+(verDetalle)="onVerDetalle($event)"
+(cancelar)="onCancelar($event)"
+(reservar)="onReservar($event)">
+</app-tabla>

@@ -1,0 +1,42 @@
+<nav class="app-navbar">
+  <div class="app-navbar__brand">
+    <a routerLink="/" (click)="cerrarMenu()">
+      <img src="assets/img/logo.png" alt="Bailes de Salon" />
+    </a>
+  </div>
+
+  <button class="burger" (click)="toggleMenu()">
+    <i [class]="menuAbierto ? 'fas fa-times' : 'fas fa-bars'"></i>
+  </button>
+
+  <div class="app-navbar__menu" [class.abierto]="menuAbierto">
+    @if (!isAdmin) {
+      <a 
+        [routerLink]="authService.isLoggedIn() ? '/clientes/eventos' : '/eventos'" 
+        routerLinkActive="active"
+        (click)="cerrarMenu()">
+        Eventos
+      </a>
+    }
+    @if (isAdmin) {
+      <a routerLink="/admin/eventos" routerLinkActive="active" (click)="cerrarMenu()">
+        Gestión
+      </a>
+    }
+    @if (authService.isLoggedIn() && !isAdmin) {
+      <a routerLink="/clientes/mis-reservas" routerLinkActive="active" (click)="cerrarMenu()">
+        Mis Reservas
+      </a>
+    }
+  </div>
+
+  <div class="app-navbar__user" [class.abierto]="menuAbierto">
+    @if (authService.isLoggedIn()) {
+      <span>{{ username }}</span>
+      <button (click)="logout()">Cerrar Sesión</button>
+    } @else {
+      <a routerLink="/login" class="btn-login" (click)="cerrarMenu()">Iniciar Sesión</a>
+      <a routerLink="/registro" class="btn-registro" (click)="cerrarMenu()">Registro</a>
+    }
+  </div>
+</nav>

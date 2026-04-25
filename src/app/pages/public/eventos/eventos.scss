@@ -1,0 +1,126 @@
+.eventos-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.eventos-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    color: var(--color-red);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: #666;
+    font-size: 1.1rem;
+  }
+}
+
+.eventos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.evento-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.evento-card {
+  &:has(.evento-badge) .evento-info {
+    padding-top: 2.8rem;
+  }
+}
+
+.evento-badge {
+  background: var(--color-accent);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  display: inline-block;
+  border-radius: 0 0 8px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.evento-info {
+  padding: 1.5rem;
+
+  h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+}
+
+.descripcion {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.evento-datos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+
+  span {
+    color: #555;
+    font-size: 0.85rem;
+  }
+}
+
+.evento-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.precio {
+  color: var(--color-accent);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.btn-detalle {
+  background: var(--color-red);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+
+  &:hover {
+    background: var(--color-accent-dark);
+    transition: background-color 0.3s ease;
+
+  }
+}
+
+.loading, .error, .no-eventos {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.error {
+  color: #c62828;
+}

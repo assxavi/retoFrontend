@@ -1,0 +1,15 @@
+<aside class="sidebar">
+  <h2 class="sidebar-title">{{ title }}</h2>
+  <ul class="sidebar-links">
+    @for (link of links; track $index) {
+      <li>
+        <a [routerLink]="link.route" routerLinkActive="active">
+          @if (link.icon) {
+            <i class="fas {{ link.icon }}"></i>
+          }
+          <span class="sidebar-label">{{ link.label }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+</aside>

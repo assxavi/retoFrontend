@@ -1,0 +1,91 @@
+<form (ngSubmit)="onGuardar()">
+  <div class="campo">
+    <label>Nombre *</label>
+    <input type="text" [formControl]="form.controls.nombre" placeholder="Ej: Gala de Tango" />
+    @if (form.controls.nombre.invalid && form.controls.nombre.touched) {
+      <span class="error">El nombre es obligatorio</span>
+    }
+  </div>
+
+  <div class="campo">
+    <label>Descripción</label>
+    <textarea
+      [formControl]="form.controls.descripcion"
+      placeholder="Descripción del evento"
+    ></textarea>
+  </div>
+
+  <div class="fila">
+    <div class="campo">
+      <label>Fecha inicio *</label>
+      <input type="date" [formControl]="form.controls.fechaInicio" />
+    </div>
+    <div class="campo">
+      <label>Duración (min) *</label>
+      <input type="number" [formControl]="form.controls.duracion" placeholder="Ej: 90" />
+    </div>
+  </div>
+
+  <div class="campo">
+    <label>Dirección</label>
+    <input
+      type="text"
+      [formControl]="form.controls.direccion"
+      placeholder="Ej: Sala de Baile Central"
+    />
+  </div>
+
+  <div class="fila">
+    <div class="campo">
+      <label>Aforo máximo *</label>
+      <input type="number" [formControl]="form.controls.aforoMaximo" />
+    </div>
+    <div class="campo">
+      <label>Mínimo asistencia</label>
+      <input type="number" [formControl]="form.controls.minimoAsistencia" />
+    </div>
+    <div class="campo">
+      <label>Precio *</label>
+      <input type="number" [formControl]="form.controls.precio" placeholder="Ej: 60" />
+    </div>
+  </div>
+
+  <div class="fila">
+    <div class="campo">
+      <label>Estado *</label>
+      <select [formControl]="form.controls.estado">
+        <option value="ACTIVO">Activo</option>
+        <option value="CANCELADO">Cancelado</option>
+        <option value="TERMINADO">Terminado</option>
+        <option value="DESACTIVADO">Desactivado</option>
+      </select>
+    </div>
+    <div class="campo">
+      <label>Destacado</label>
+      <select [formControl]="form.controls.destacado">
+        <option value="S">Sí</option>
+        <option value="N">No</option>
+      </select>
+    </div>
+  </div>
+
+<div class="campo">
+  <label>Tipo *</label>
+  <select [formControl]="form.controls.idTipo">
+    <option value="">-- Selecciona un tipo --</option>
+    @for (tipo of tipos; track tipo.idTipo) {
+      <option [value]="tipo.idTipo">{{ tipo.nombre }}</option>
+    }
+  </select>
+  @if (form.controls.idTipo.invalid && form.controls.idTipo.touched) {
+    <span class="error">El tipo es obligatorio</span>
+  }
+</div>
+
+  <div class="acciones">
+    <app-boton texto="Cancelar" variante="secundario" (click)="cancelar.emit()" />
+    <button type="button" (click)="onGuardar()" class="btn btn--primario">
+      <i class="fas fa-floppy-disk"></i> Guardar
+    </button>
+  </div>
+</form>

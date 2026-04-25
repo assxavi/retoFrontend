@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (fila of datosPagina; track fila.idEvento ?? fila.id) {
+      @for (fila of datosPagina; track $index) {
         <tr>
           @for (col of columnas; track col.campo) {
             <td>{{ getValor(fila, col.campo) }}</td>

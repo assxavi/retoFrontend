@@ -81,18 +81,25 @@ export class GestionEventosComponent {
       error: (err) => console.error('Error al cancelar evento:', err),
     });
   }
-  onEliminar(evento: any) {
-    if (confirm(`¿Estás seguro de que deseas eliminar el evento "${evento.nombre}"?`)) {
-      this.eventoService.eliminar(evento.idEvento).subscribe({
-        next: () => {
-          // Eliminamos el evento de la lista local de forma instantánea
+onEliminar(evento: any) {
+  if (confirm("¿Estás seguro de que deseas eliminar el evento \"" + evento.nombre + "\"?")) {
+    this.eventoService.eliminar(evento.idEvento).subscribe({
+      next: () => {
+        this.eventos = this.eventos.filter((e) => e.idEvento !== evento.idEvento);
+        this.filtrarEventos();
+      },
+      error: (err) => {
+        // 204 No Content puede llegar como error de parseo, pero la operación fue exitosa
+        if (err.status === 200 || err.status === 204) {
           this.eventos = this.eventos.filter((e) => e.idEvento !== evento.idEvento);
           this.filtrarEventos();
-        },
-        error: (err) => console.error('Error al eliminar evento:', err),
-      });
-    }
+        } else {
+          console.error('Error al eliminar evento:', err);
+        }
+      },
+    });
   }
+}
 
   onGuardarEvento(datos: any): void {
     if (this.eventoSeleccionado) {

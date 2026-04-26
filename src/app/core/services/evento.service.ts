@@ -39,9 +39,9 @@ export class EventoService {
     return this.http.put<void>(`${this.apiUrl}/cancelar/${id}`, {});
   }
 
-  eliminar(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/eliminar/${id}`);
-  }
+eliminar(id: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/eliminar/${id}`, { responseType: 'text' });
+}
 
   // Endpoints específicos para vista pública e invitado
   getCancelados(): Observable<Evento[]> {

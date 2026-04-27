@@ -71,5 +71,12 @@ src/app/
 - `main` → código estable
 - `develop` → desarrollo activo
 
-## Autor
+## Autores
 Yeray — Frontend Developer
+Hector Gonzalez Mendez - FullStack Developer
+Álvaro Postigo Jiménez - FullStack Developer
+Jesus Pastor Ricoy - FullStack Developer
+Sofia Fernandez Feijoo - FullStack Developer
+
+## URL RETO
+https://reto.alvaropj.com 
